@@ -1,0 +1,13 @@
+23:07:17 cellblock-1.0: 8 runs per batch, 6 days, conditions ['coached', 'neutral'], deadline 2026-10-06 08:30:00
+23:07:17 batch 0: ['coached-s1000', 'neutral-s1000', 'coached-s1001', 'neutral-s1001', 'coached-s1002', 'neutral-s1002', 'coached-s1003', 'neutral-s1003']
+23:07:51   step 1: 8 requests, prompt max 614 tokens, 33.3s, peak 5.49 GB
+23:13:21   step 11: 8 requests, prompt max 923 tokens, 44.8s, peak 5.84 GB
+23:23:35   step 21: 48 requests, prompt max 1003 tokens, 259.8s, peak 7.58 GB
+23:30:58   step 31: 8 requests, prompt max 1141 tokens, 55.0s, peak 7.58 GB
+23:37:33   step 41: 8 requests, prompt max 1116 tokens, 44.5s, peak 7.58 GB
+23:49:09   step 51: 8 requests, prompt max 1041 tokens, 46.1s, peak 7.59 GB
+23:56:19   step 61: 8 requests, prompt max 1034 tokens, 38.0s, peak 7.59 GB
+00:08:32   step 71: 8 requests, prompt max 1092 tokens, 40.0s, peak 7.59 GB
+00:15:19   step 81: 8 requests, prompt max 1081 tokens, 37.6s, peak 7.59 GB
+00:25:41   step 91: 8 requests, prompt max 1165 tokens, 44.7s, peak 8.12 GB
+00:32:56   step 101: 8 requests, prompt max 1140 tokens, 48.9s, peak 8.12 GB

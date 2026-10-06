@@ -1,0 +1,61 @@
+{
+ "run": "neutral-s1000",
+ "condition": "neutral",
+ "seed": 1000,
+ "days": 1,
+ "protocol": "cellblock-1.0",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Felix Pryor",
+   "bio": "a music student who teaches guitar to children",
+   "number": "2438",
+   "label": "Prisoner 2438",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Owen Garza",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "7663",
+   "label": "Prisoner 7663",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Nathan Ortiz",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Officer Ortiz"
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Jonah Lang",
+   "bio": "a chemistry student who is the first in his family at university",
+   "label": "Officer Lang"
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Marcus Rowe",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "label": "Officer Rowe"
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Samuel Holt",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "6911",
+   "label": "Prisoner 6911",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

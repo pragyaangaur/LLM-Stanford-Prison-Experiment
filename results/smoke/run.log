@@ -1,0 +1,7 @@
+22:56:43 cellblock-1.0: 2 runs per batch, 1 days, conditions ['coached', 'neutral'], deadline None
+22:56:43 batch 0: ['coached-s1000', 'neutral-s1000']
+22:56:56   step 1: 2 requests, prompt max 614 tokens, 13.4s, peak 5.02 GB
+22:58:54   step 11: 2 requests, prompt max 889 tokens, 16.1s, peak 5.07 GB
+23:03:28   step 21: 12 requests, prompt max 1084 tokens, 129.0s, peak 6.42 GB
+23:04:55 batch 0 done in 8.2 min
+23:04:55 wrote all batches
