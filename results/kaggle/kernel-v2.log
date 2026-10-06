@@ -1,0 +1,56 @@
+[{"stream_name":"stdout","time":0.939166132,"data":"02:13:44 [   0.0 min] $ nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv\n"}
+,{"stream_name":"stdout","time":0.984753638,"data":"name, memory.total [MiB], driver_version\n"}
+,{"stream_name":"stdout","time":0.984782308,"data":"Tesla T4, 15360 MiB, 580.178.04\n"}
+,{"stream_name":"stdout","time":0.984814413,"data":"Tesla T4, 15360 MiB, 580.178.04\n"}
+,{"stream_name":"stdout","time":0.992965662,"data":"02:13:45 [   0.0 min] $ pip uninstall -y -q torchaudio\n"}
+,{"stream_name":"stdout","time":3.979559399,"data":"02:13:48 [   0.1 min] $ pip install -q vllm==0.11.0 2\u003e\u00261 | tail -3\n"}
+,{"stream_name":"stdout","time":202.402879779,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 108.7/108.7 kB 6.3 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":202.402928627,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.0/8.0 MB 47.1 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":202.402933258,"data":"   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 928.0/928.0 kB 29.0 MB/s eta 0:00:00\n"}
+,{"stream_name":"stdout","time":202.403389346,"data":"02:17:06 [   3.4 min] $ pip uninstall -y -q torchaudio\n"}
+,{"stream_name":"stdout","time":256.081094261,"data":"02:18:00 [   4.3 min] vLLM smoke test:\n"}
+,{"stream_name":"stdout","time":256.081125027,"data":"        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":256.081130559,"data":"  File \"/usr/local/lib/python3.13/dist-packages/vllm/transformers_utils/tokenizer.py\", line 286, in init_tokenizer_from_configs\n"}
+,{"stream_name":"stdout","time":256.081135031,"data":"    return get_tokenizer(\n"}
+,{"stream_name":"stdout","time":256.081139242,"data":"        model_config.tokenizer,\n"}
+,{"stream_name":"stdout","time":256.081143443,"data":"    ...\u003c3 lines\u003e...\n"}
+,{"stream_name":"stdout","time":256.08114815,"data":"        truncation_side=truncation_side,\n"}
+,{"stream_name":"stdout","time":256.081152446,"data":"    )\n"}
+,{"stream_name":"stdout","time":256.081157605,"data":"  File \"/usr/local/lib/python3.13/dist-packages/vllm/transformers_utils/tokenizer.py\", line 256, in get_tokenizer\n"}
+,{"stream_name":"stdout","time":256.081162824,"data":"    tokenizer = get_cached_tokenizer(tokenizer)\n"}
+,{"stream_name":"stdout","time":256.081167389,"data":"  File \"/usr/local/lib/python3.13/dist-packages/vllm/transformers_utils/tokenizer.py\", line 99, in get_cached_tokenizer\n"}
+,{"stream_name":"stdout","time":256.081172179,"data":"    tokenizer.all_special_tokens_extended)\n"}
+,{"stream_name":"stdout","time":256.081176828,"data":"    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":256.081181715,"data":"  File \"/usr/local/lib/python3.13/dist-packages/transformers/tokenization_utils_base.py\", line 1308, in __getattr__\n"}
+,{"stream_name":"stdout","time":256.081186134,"data":"    raise AttributeError(f\"{self.__class__.__name__} has no attribute {key}\")\n"}
+,{"stream_name":"stdout","time":256.081190982,"data":"AttributeError: Qwen2Tokenizer has no attribute all_special_tokens_extended. Did you mean: 'num_special_tokens_to_add'?\n"}
+,{"stream_name":"stdout","time":256.08119576,"data":"\n"}
+,{"stream_name":"stdout","time":256.08120006,"data":"02:18:00 [   4.3 min] vLLM failed: RuntimeError: vLLM smoke test failed\n"}
+,{"stream_name":"stderr","time":263.308073231,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":337.896230888,"data":"\rFetching 4 files:   0%|          | 0/4 [00:00\u003c?, ?it/s]\rFetching 4 files:  25%|██▌       | 1/4 [00:54\u003c02:43, 54.42s/it]\rFetching 4 files: 100%|██████████| 4/4 [01:03\u003c00:00, 12.65s/it]\rFetching 4 files: 100%|██████████| 4/4 [01:12\u003c00:00, 18.14s/it]\n"}
+,{"stream_name":"stderr","time":377.812855859,"data":"\rLoading weights:   0%|          | 0/339 [00:00\u003c?, ?it/s]\rLoading weights:   0%|          | 1/339 [00:11\u003c1:06:02, 11.72s/it]\rLoading weights:  44%|████▎     | 148/339 [00:12\u003c00:11, 15.92it/s]\rLoading weights:  48%|████▊     | 162/339 [00:14\u003c00:12, 14.07it/s]\rLoading weights:  51%|█████     | 172/339 [00:16\u003c00:13, 12.16it/s]\rLoading weights:  52%|█████▏    | 176/339 [00:16\u003c00:13, 12.23it/s]\rLoading weights:  54%|█████▍    | 184/339 [00:17\u003c00:13, 11.24it/s]\rLoading weights:  55%|█████▍    | 186/339 [00:18\u003c00:15,  9.81it/s]\rLoading weights:  58%|█████▊    | 196/339 [00:19\u003c00:14,  9.58it/s]\rLoading weights:  58%|█████▊    | 198/339 [00:20\u003c00:18,  7.80it/s]\rLoading weights:  61%|██████▏   | 208/339 [00:21\u003c00:15,  8.44it/s]\rLoading weights:  62%|██████▏   | 209/339 [00:21\u003c00:15,  8.14it/s]\rLoading weights:  62%|██████▏   | 210/339 [00:21\u003c00:16,  7.90it/s]\rLoading weights:  65%|██████▍   | 220/339 [00:23\u003c00:17,  6.81it/s]\rLoading weights:  65%|██████▌   | 222/339 [00:23\u003c00:16,  7.25it/s]\rLoading weights:  68%|██████▊   | 232/339 [00:24\u003c00:11,  9.10it/s]\rLoading weights:  69%|██████▉   | 234/339 [00:25\u003c00:14,  7.36it/s]\rLoading weights:  72%|███████▏  | 244/339 [00:26\u003c00:11,  8.18it/s]\rLoading weights:  73%|███████▎  | 246/339 [00:27\u003c00:15,  6.19it/s]\rLoading weights:  76%|███████▌  | 256/339 [00:28\u003c00:11,  7.38it/s]\rLoading weights:  76%|███████▌  | 258/339 [00:28\u003c00:10,  7.92it/s]\rLoading weights:  79%|███████▉  | 268/339 [00:29\u003c00:10,  6.93it/s]\rLoading weights:  79%|███████▉  | 269/339 [00:30\u003c00:10,  6.44it/s]\rLoading weights:  83%|████████▎ | 280/339 [00:31\u003c00:07,  7.94it/s]\rLoading weights:  83%|████████▎ | 281/339 [00:31\u003c00:07,  7.27it/s]\rLoading weights:  83%|████████▎ | 282/339 [00:31\u003c00:08,  6.54it/s]\rLoading weights:  86%|████████▌ | 292/339 [00:32\u003c00:05,  8.00it/s]\rLoading weights:  86%|████████▋ | 293/339 [00:33\u003c00:06,  7.21it/s]\rLoading weights:  87%|████████▋ | 294/339 [00:33\u003c00:07,  5.90it/s]\rLoading weights:  90%|████████▉ | 304/339 [00:35\u003c00:05,  6.65it/s]\rLoading weights:  90%|█████████ | 306/339 [00:35\u003c00:04,  6.85it/s]\rLoading weights:  93%|█████████▎| 316/339 [00:36\u003c00:03,  6.76it/s]\rLoading weights:  94%|█████████▎| 317/339 [00:37\u003c00:03,  6.06it/s]\rLoading weights:  97%|█████████▋| 328/339 [00:38\u003c00:01,  7.38it/s]\rLoading weights:  97%|█████████▋| 329/339 [00:38\u003c00:01,  7.02it/s]\rLoading weights:  97%|█████████▋| 330/339 [00:38\u003c00:01,  7.16it/s]\rLoading weights: 100%|██████████| 339/339 [00:38\u003c00:00,  8.74it/s]\n"}
+,{"stream_name":"stdout","time":378.178516506,"data":"02:20:02 [   6.3 min] backend transformers ready\n"}
+,{"stream_name":"stdout","time":378.179726263,"data":"02:20:02 [   6.3 min] wave 0: protest, seeds 2000 to 2011, 24 prisons\n"}
+,{"stream_name":"stdout","time":398.848217372,"data":"02:20:22 [   6.6 min]   step 1: 24 requests, 20.7s\n"}
+,{"stream_name":"stdout","time":617.48409968,"data":"02:24:01 [  10.3 min]   step 11: 24 requests, 32.9s\n"}
+,{"stream_name":"stdout","time":1128.753667061,"data":"02:32:32 [  18.8 min]   step 21: 144 requests, 239.3s\n"}
+,{"stream_name":"stdout","time":1485.129111049,"data":"02:38:29 [  24.7 min]   step 31: 24 requests, 41.5s\n"}
+,{"stream_name":"stdout","time":1852.248382442,"data":"02:44:36 [  30.9 min]   step 41: 24 requests, 45.1s\n"}
+,{"stream_name":"stdout","time":2448.704578184,"data":"02:54:32 [  40.8 min]   step 51: 24 requests, 32.9s\n"}
+,{"stream_name":"stdout","time":2825.886274849,"data":"03:00:49 [  47.1 min]   step 61: 24 requests, 31.1s\n"}
+,{"stream_name":"stdout","time":3513.282413556,"data":"03:12:17 [  58.5 min]   step 71: 24 requests, 33.1s\n"}
+,{"stream_name":"stdout","time":3885.025790336,"data":"03:18:29 [  64.7 min]   step 81: 24 requests, 33.9s\n"}
+,{"stream_name":"stdout","time":4531.072871679,"data":"03:29:15 [  75.5 min]   step 91: 24 requests, 46.4s\n"}
+,{"stream_name":"stdout","time":4929.932308475,"data":"03:35:53 [  82.2 min]   step 101: 24 requests, 48.6s\n"}
+,{"stream_name":"stdout","time":5586.425570632,"data":"03:46:50 [  93.1 min]   step 111: 24 requests, 52.5s\n"}
+,{"stream_name":"stdout","time":5998.285254718,"data":"03:53:42 [ 100.0 min]   step 121: 24 requests, 48.2s\n"}
+,{"stream_name":"stdout","time":6915.158377863,"data":"04:08:59 [ 115.2 min] wave 0 done in 108.9 min\n"}
+,{"stream_name":"stdout","time":6915.158410342,"data":"04:08:59 [ 115.2 min] stopping: a wave takes about 109 min and 89 min are left\n"}
+,{"stream_name":"stdout","time":6915.167645753,"data":"04:08:59 [ 115.2 min] wrote all waves\n"}
+,{"stream_name":"stderr","time":6919.134088119,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":6919.13413234,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":6919.390119892,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":6919.390149313,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":6920.235897221,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":6921.29414335,"data":"[NbConvertApp] Writing 350849 bytes to __results__.html\n"}
+]

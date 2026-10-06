@@ -1,0 +1,63 @@
+{
+ "run": "coached-calm-s2005",
+ "condition": "coached",
+ "variant": "calm",
+ "seed": 2005,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Caleb Garza",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "7952",
+   "label": "Prisoner 7952",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Daniel Lang",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Officer Lang"
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Eli Doyle",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "label": "Officer Doyle"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Samuel Ibsen",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "2745",
+   "label": "Prisoner 2745",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Owen Shaw",
+   "bio": "a music student who teaches guitar to children",
+   "number": "7510",
+   "label": "Prisoner 7510",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Miles Pryor",
+   "bio": "a chemistry student who is the first in his family at university",
+   "label": "Officer Pryor"
+  }
+ ]
+}

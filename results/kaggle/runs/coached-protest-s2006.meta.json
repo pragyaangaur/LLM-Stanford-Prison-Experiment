@@ -1,0 +1,63 @@
+{
+ "run": "coached-protest-s2006",
+ "condition": "coached",
+ "variant": "protest",
+ "seed": 2006,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Miles Shaw",
+   "bio": "a biology student saving money for a trip abroad",
+   "label": "Officer Shaw"
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Nathan Mercer",
+   "bio": "a chemistry student who is the first in his family at university",
+   "number": "4760",
+   "label": "Prisoner 4760",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "prisoner",
+   "name": "Eli Doyle",
+   "bio": "an economics student who grew up in a small farming town",
+   "number": "562",
+   "label": "Prisoner 562",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Aaron Lang",
+   "bio": "a literature student who writes for the campus newspaper",
+   "label": "Officer Lang"
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Daniel Ibsen",
+   "bio": "an engineering student who plays in a weekend football league",
+   "number": "7703",
+   "label": "Prisoner 7703",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Jonah Ortiz",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "label": "Officer Ortiz"
+  }
+ ]
+}

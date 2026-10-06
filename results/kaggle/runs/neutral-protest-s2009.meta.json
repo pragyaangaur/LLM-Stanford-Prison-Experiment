@@ -1,0 +1,63 @@
+{
+ "run": "neutral-protest-s2009",
+ "condition": "neutral",
+ "variant": "protest",
+ "seed": 2009,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Isaac Rowe",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "1252",
+   "label": "Prisoner 1252",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Jonah Pryor",
+   "bio": "a chemistry student who is the first in his family at university",
+   "label": "Officer Pryor"
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Felix Avery",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Officer Avery"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Daniel Walsh",
+   "bio": "an engineering student who plays in a weekend football league",
+   "number": "8343",
+   "label": "Prisoner 8343",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Leo Brooks",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Officer Brooks"
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Simon Mercer",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "3890",
+   "label": "Prisoner 3890",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

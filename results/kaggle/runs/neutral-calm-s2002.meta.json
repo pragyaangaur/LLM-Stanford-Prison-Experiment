@@ -1,0 +1,63 @@
+{
+ "run": "neutral-calm-s2002",
+ "condition": "neutral",
+ "variant": "calm",
+ "seed": 2002,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Daniel Lang",
+   "bio": "an engineering student who plays in a weekend football league",
+   "number": "350",
+   "label": "Prisoner 350",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Adrian Avery",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Officer Avery"
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Aaron Walsh",
+   "bio": "a literature student who writes for the campus newspaper",
+   "label": "Officer Walsh"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Nathan Ibsen",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "number": "2965",
+   "label": "Prisoner 2965",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Simon Fenn",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "9889",
+   "label": "Prisoner 9889",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Victor Hale",
+   "bio": "a computer science student who likes long-distance running",
+   "label": "Officer Hale"
+  }
+ ]
+}

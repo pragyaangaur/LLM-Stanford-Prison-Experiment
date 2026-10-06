@@ -1,0 +1,63 @@
+{
+ "run": "coached-calm-s2001",
+ "condition": "coached",
+ "variant": "calm",
+ "seed": 2001,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Daniel Brooks",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Officer Brooks"
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Leo Pryor",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "2755",
+   "label": "Prisoner 2755",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Marcus Shaw",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "label": "Officer Shaw"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Simon Ortiz",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "number": "7826",
+   "label": "Prisoner 7826",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Aaron Doyle",
+   "bio": "a chemistry student who is the first in his family at university",
+   "label": "Officer Doyle"
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Victor Mercer",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "6334",
+   "label": "Prisoner 6334",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

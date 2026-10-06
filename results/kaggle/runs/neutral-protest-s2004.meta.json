@@ -1,0 +1,63 @@
+{
+ "run": "neutral-protest-s2004",
+ "condition": "neutral",
+ "variant": "protest",
+ "seed": 2004,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Adrian Lowe",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "7526",
+   "label": "Prisoner 7526",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Daniel Ortiz",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "9502",
+   "label": "Prisoner 9502",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Theo Holt",
+   "bio": "a literature student who writes for the campus newspaper",
+   "label": "Officer Holt"
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Jonah Mercer",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Officer Mercer"
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Marcus Ibsen",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "number": "1766",
+   "label": "Prisoner 1766",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Aaron Avery",
+   "bio": "a biology student saving money for a trip abroad",
+   "label": "Officer Avery"
+  }
+ ]
+}

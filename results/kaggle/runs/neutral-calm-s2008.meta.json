@@ -1,0 +1,63 @@
+{
+ "run": "neutral-calm-s2008",
+ "condition": "neutral",
+ "variant": "calm",
+ "seed": 2008,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Rafael Fenn",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "label": "Officer Fenn"
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Nathan Shaw",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Officer Shaw"
+  },
+  {
+   "idx": 2,
+   "role": "prisoner",
+   "name": "Owen Tate",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "4579",
+   "label": "Prisoner 4579",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Daniel Holt",
+   "bio": "a biology student saving money for a trip abroad",
+   "label": "Officer Holt"
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Adrian Lowe",
+   "bio": "an engineering student who plays in a weekend football league",
+   "number": "2557",
+   "label": "Prisoner 2557",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Leo Garza",
+   "bio": "an economics student who grew up in a small farming town",
+   "number": "7065",
+   "label": "Prisoner 7065",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

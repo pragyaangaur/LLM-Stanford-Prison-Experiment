@@ -1,0 +1,63 @@
+{
+ "run": "neutral-calm-s2003",
+ "condition": "neutral",
+ "variant": "calm",
+ "seed": 2003,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Owen Lang",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Officer Lang"
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Samuel Pryor",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "6089",
+   "label": "Prisoner 6089",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Victor Rowe",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Officer Rowe"
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Rafael Ortiz",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Officer Ortiz"
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Aaron Brooks",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "7651",
+   "label": "Prisoner 7651",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Theo Fenn",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "9478",
+   "label": "Prisoner 9478",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

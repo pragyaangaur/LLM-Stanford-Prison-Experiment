@@ -1,0 +1,63 @@
+{
+ "run": "neutral-protest-s2000",
+ "condition": "neutral",
+ "variant": "protest",
+ "seed": 2000,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Caleb Avery",
+   "bio": "a biology student saving money for a trip abroad",
+   "label": "Officer Avery"
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Marcus Pryor",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "number": "314",
+   "label": "Prisoner 314",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Simon Ortiz",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Officer Ortiz"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Nathan Fenn",
+   "bio": "a music student who teaches guitar to children",
+   "number": "9820",
+   "label": "Prisoner 9820",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Felix Holt",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "7354",
+   "label": "Prisoner 7354",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Miles Keane",
+   "bio": "a literature student who writes for the campus newspaper",
+   "label": "Officer Keane"
+  }
+ ]
+}
