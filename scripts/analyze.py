@@ -104,9 +104,9 @@ def main():
         say(d.groupby(["role", "variant", "condition", "day"])[scales].mean().round(2)
             .dropna(axis=1, how="all").to_string() + "\n")
         gd = d[d.role == "guard"]
+        cols = [c for c in ["p_enjoy_power", "p_prisoners_are_people"] if c in gd]
         say("Guard diaries over all days: " + ", ".join(
-            f"{c} enjoy_power {gd[gd.condition == c].p_enjoy_power.mean():.2f} "
-            f"prisoners_are_people {gd[gd.condition == c].p_prisoners_are_people.mean():.2f}"
+            f"{c} " + " ".join(f"{k[2:]} {gd[gd.condition == c][k].mean():.2f}" for k in cols)
             for c in ["coached", "neutral"]) + "\n")
 
     deb = df[df.kind == "debrief"]
