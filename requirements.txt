@@ -1,0 +1,11 @@
+numpy>=2.0
+pandas>=2.2
+scipy>=1.13
+pytest>=8.0
+
+# Laptop runs on Apple silicon
+mlx>=0.32; sys_platform == "darwin"
+mlx-lm>=0.32; sys_platform == "darwin"
+
+# The Kaggle CLI, to push the kernel and fetch its output
+kaggle>=1.7

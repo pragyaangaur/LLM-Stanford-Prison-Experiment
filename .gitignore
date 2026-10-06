@@ -1,0 +1,20 @@
+# Environment and caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+
+# Weights live one folder up and are reached through a symlink
+models
+
+# Kaggle build output, rebuilt by kaggle/build.py
+kaggle/push/
+
+# Console output. Logs under results/ are kept, since they record the failed runs.
+*.stdout
+*.log
+!results/**/*.log
+
+# Private notes, kept local
+AGENTS.md
