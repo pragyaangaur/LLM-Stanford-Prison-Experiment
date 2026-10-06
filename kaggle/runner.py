@@ -10,7 +10,13 @@ A wave takes about as long as its sequential steps, whatever its size, until it 
 GPU batch per step. So each wave is packed with as many seeds as fit the time left, counted in
 GPU batches of CHUNK prompts, using the minutes per batch measured so far. A wave still running at the hard deadline stops
 cleanly with what it has. Records are written after every step to
-/kaggle/working/results/kaggle/runs/, which Kaggle keeps as the notebook output.
+/kaggle/working/results/<tag>/runs/, which Kaggle keeps as the notebook output.
+
+The same file runs on Google Colab (colab/cellblock_colab.ipynb), where CELLBLOCK_WORK points at
+Google Drive. A session there can drop at any time, so a restart skips every seed whose two
+prisons finished and reruns any seed with a prison that did not. When one GPU holds less than
+the float16 weights need, the model is loaded in 4-bit NF4 instead, and every prison records
+which it used.
 """
 import base64
 import datetime as dt
@@ -27,10 +33,12 @@ CONFIG = json.loads(base64.b64decode("__CONFIG_B64__"))
 HOURS = float(os.environ.get("CELLBLOCK_HOURS", CONFIG["hours"]))
 DEADLINE = START + HOURS * 3600
 MODEL = CONFIG["model"]
-PROTOCOL = "cellblock-1.1-kaggle"
+TAG = CONFIG.get("tag", "kaggle")
+PROTOCOL = f"cellblock-1.1-{TAG}"
+QUANT = os.environ.get("CELLBLOCK_QUANT", CONFIG.get("quant", "auto"))   # auto, fp16 or nf4
 CHUNK = int(CONFIG.get("chunk", 24))   # prompts per transformers batch
 WORK = Path(os.environ.get("CELLBLOCK_WORK", "/kaggle/working"))
-OUT = WORK / "results" / "kaggle"
+OUT = WORK / "results" / TAG
 RUNS = OUT / "runs"
 RUNS.mkdir(parents=True, exist_ok=True)
 SIM_B64 = "__SIM_B64__"
@@ -113,9 +121,26 @@ def merge_system(msgs):
     return msgs
 
 
+def pick_quant(torch):
+    """float16 needs about 15.2 GB for a 7B model plus room for the cache, so it is used when
+    the GPUs together have at least 20 GB. Two Kaggle T4s have 30 GB, one Colab T4 has 15 GB."""
+    if QUANT != "auto":
+        return QUANT
+    total = sum(torch.cuda.get_device_properties(i).total_memory for i in range(torch.cuda.device_count()))
+    return "fp16" if total >= 20e9 else "nf4"
+
+
 def hf_backend():
+    global QUANT
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
+    QUANT = pick_quant(torch)
+    extra = {}
+    if QUANT == "nf4":
+        from transformers import BitsAndBytesConfig
+        extra["quantization_config"] = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
+                                                          bnb_4bit_compute_dtype=torch.float16)
+    log(f"loading {MODEL} as {QUANT}")
     tok = AutoTokenizer.from_pretrained(MODEL, padding_side="left")
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
@@ -127,7 +152,7 @@ def hf_backend():
         fold = True
         log("chat template has no system role, so the system prompt is folded into the first turn")
     model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.float16, device_map="auto",
-                                                 attn_implementation="sdpa")
+                                                 attn_implementation="sdpa", **extra)
     model.eval()
 
     def gen(reqs, chunk=CHUNK):
@@ -191,7 +216,7 @@ def run_wave(gen, prisons, hard_deadline):
                 written[i] = len(p.records)
     for i, p in enumerate(prisons):
         meta = dict(run=p.run_id, condition=p.condition, variant=p.variant, seed=p.seed, days=p.days,
-                    protocol=PROTOCOL, model=MODEL, complete=not cut or i not in pending,
+                    protocol=PROTOCOL, model=MODEL, quant=QUANT, complete=not cut or i not in pending,
                     agents=[{k: (sorted(v) if isinstance(v, set) else v) for k, v in a.items() if k != "diary"}
                             for a in p.agents])
         if meta["complete"]:
@@ -221,6 +246,25 @@ def fake_backend():
     return "fake", gen
 
 
+def resume(queue):
+    """Drop seeds whose coached and neutral prisons both finished in an earlier session. A
+    prison that started but did not finish is deleted and run again from day 1, together with
+    its twin, so that every seed pair comes from one session."""
+    todo = []
+    for v, s in queue:
+        names = [f"{cond}-{v}-s{s}" for cond in ("coached", "neutral")]
+        if all((RUNS / f"{n}.meta.json").exists() for n in names):
+            continue
+        for n in names:
+            for f in (RUNS / f"{n}.jsonl", RUNS / f"{n}.meta.json"):
+                if f.exists():
+                    f.unlink()
+        todo.append((v, s))
+    if len(todo) < len(queue):
+        log(f"resuming: {len(queue) - len(todo)} seed pairs already finished, {len(todo)} to run")
+    return todo
+
+
 def main():
     sh("nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv")
     # Nothing here uses TorchAudio, and a mismatched copy breaks every transformers import.
@@ -242,6 +286,7 @@ def main():
     per_batch = float(CONFIG.get("minutes_per_batch", 105)) * 60
     max_wave = int(CONFIG.get("max_wave", 36))
     queue = [(b["variant"], s) for b in CONFIG["plan"] for s in range(b["seed0"], b["seed0"] + b["n"])]
+    queue = resume(queue)
     done = 0
     w = 0
     while done < len(queue):

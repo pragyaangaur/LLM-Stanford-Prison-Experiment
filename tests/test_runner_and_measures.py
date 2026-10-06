@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT))
 from cellblock import measures as M  # noqa: E402
 
 
-def build_and_run(tmp_path, *build_args):
+def build_and_run(tmp_path, *build_args, tag="kaggle"):
     push = tmp_path / "push"
     src = (ROOT / "kaggle" / "runner.py").read_text()
     # This rewrites kaggle/push, which is a build output and is not committed.
@@ -20,12 +20,12 @@ def build_and_run(tmp_path, *build_args):
                    capture_output=True)
     script = (ROOT / "kaggle" / "push" / "cellblock_kaggle.py").read_text()
     assert "__SIM_B64__" in src and "__SIM_B64__" not in script and "__CONFIG_B64__" not in script
-    push.mkdir()
+    push.mkdir(exist_ok=True)
     (push / "k.py").write_text(script)
     env = {**os.environ, "CELLBLOCK_FAKE": "1", "CELLBLOCK_WORK": str(tmp_path / "work")}
     r = subprocess.run([sys.executable, str(push / "k.py")], env=env, capture_output=True, text=True)
     assert r.returncode == 0, r.stderr[-2000:]
-    return tmp_path / "work" / "results" / "kaggle", r.stdout
+    return tmp_path / "work" / "results" / tag, r.stdout
 
 
 def test_runner_runs_every_planned_prison_and_pairs_conditions(tmp_path):
@@ -46,6 +46,26 @@ def test_runner_starts_nothing_when_one_batch_cannot_fit(tmp_path):
     out, log = build_and_run(tmp_path, "--plan", "calm:2012:36", "--hours", "1")
     assert "stopping" in log
     assert not list((out / "runs").glob("*.meta.json"))
+
+
+def test_a_restart_skips_finished_seeds_and_reruns_broken_ones(tmp_path):
+    args = ("--plan", "calm:3000:3", "--hours", "4", "--tag", "colab-test")
+    out, _ = build_and_run(tmp_path, *args, tag="colab-test")
+    runs = out / "runs"
+    lines = {p.name: len(p.read_text().splitlines()) for p in runs.glob("*.jsonl")}
+    assert len(lines) == 6
+    meta = json.loads((runs / "coached-calm-s3000.meta.json").read_text())
+    assert meta["protocol"] == "cellblock-1.1-colab-test" and meta["quant"] == "auto"
+    # A session that dropped mid-wave leaves a prison with records and no meta file.
+    (runs / "neutral-calm-s3001.meta.json").unlink()
+    with open(runs / "neutral-calm-s3001.jsonl", "a") as f:
+        f.write('{"kind": "half-written"}\n')
+    _, log = build_and_run(tmp_path, *args, tag="colab-test")
+    assert "2 seed pairs already finished, 1 to run" in log
+    after = {p.name: len(p.read_text().splitlines()) for p in runs.glob("*.jsonl")}
+    assert after == lines
+    assert "half-written" not in (runs / "neutral-calm-s3001.jsonl").read_text()
+    assert len(list(runs.glob("*.meta.json"))) == 6
 
 
 def fake_prisons(rows):

@@ -21,6 +21,8 @@ ap.add_argument("--slug", default="cellblock")
 ap.add_argument("--max-wave", type=int, default=36)
 ap.add_argument("--chunk", type=int, default=24)
 ap.add_argument("--try-vllm", action="store_true")
+ap.add_argument("--tag", default="kaggle", help="results go to results/<tag>/runs")
+ap.add_argument("--quant", default="auto", choices=["auto", "fp16", "nf4"])
 a = ap.parse_args()
 
 plan = []
@@ -28,7 +30,8 @@ for b in a.plan:
     v, s0, n = b.split(":")
     assert v in ("calm", "protest"), v
     plan.append(dict(variant=v, seed0=int(s0), n=int(n)))
-config = dict(model=a.model, hours=a.hours, plan=plan, max_wave=a.max_wave, chunk=a.chunk, try_vllm=a.try_vllm)
+config = dict(model=a.model, hours=a.hours, plan=plan, max_wave=a.max_wave, chunk=a.chunk, try_vllm=a.try_vllm,
+              tag=a.tag, quant=a.quant)
 
 sim = (HERE.parent / "cellblock" / "sim.py").read_bytes()
 src = (HERE / "runner.py").read_text()
