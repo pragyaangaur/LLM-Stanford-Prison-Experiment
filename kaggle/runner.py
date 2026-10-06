@@ -36,6 +36,7 @@ MODEL = CONFIG["model"]
 TAG = CONFIG.get("tag", "kaggle")
 PROTOCOL = f"cellblock-1.1-{TAG}"
 QUANT = os.environ.get("CELLBLOCK_QUANT", CONFIG.get("quant", "auto"))   # auto, fp16 or nf4
+COMPUTE = "float16"   # the dtype the 4-bit layers compute in, set when the model loads
 CHUNK = int(CONFIG.get("chunk", 24))   # prompts per transformers batch
 WORK = Path(os.environ.get("CELLBLOCK_WORK", "/kaggle/working"))
 OUT = WORK / "results" / TAG
@@ -131,16 +132,23 @@ def pick_quant(torch):
 
 
 def hf_backend():
-    global QUANT
+    global QUANT, COMPUTE
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
     QUANT = pick_quant(torch)
     extra = {}
     if QUANT == "nf4":
+        # Models such as OLMo 2 are trained in bfloat16 and can overflow in float16, so bfloat16 is
+        # used where the GPU has it. A T4 does not, and float32 would not fit its cache there.
         from transformers import BitsAndBytesConfig
+        try:
+            bf16 = torch.cuda.is_bf16_supported(including_emulation=False)
+        except TypeError:
+            bf16 = torch.cuda.get_device_capability(0)[0] >= 8
+        COMPUTE = "bfloat16" if bf16 else "float16"
         extra["quantization_config"] = BitsAndBytesConfig(load_in_4bit=True, bnb_4bit_quant_type="nf4",
-                                                          bnb_4bit_compute_dtype=torch.float16)
-    log(f"loading {MODEL} as {QUANT}")
+                                                          bnb_4bit_compute_dtype=getattr(torch, COMPUTE))
+    log(f"loading {MODEL} as {QUANT}" + (f", computing in {COMPUTE}" if QUANT == "nf4" else ""))
     tok = AutoTokenizer.from_pretrained(MODEL, padding_side="left")
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
@@ -151,23 +159,43 @@ def hf_backend():
     except Exception:  # noqa: BLE001
         fold = True
         log("chat template has no system role, so the system prompt is folded into the first turn")
-    model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=torch.float16, device_map="auto",
+    model = AutoModelForCausalLM.from_pretrained(MODEL, dtype=getattr(torch, COMPUTE), device_map="auto",
                                                  attn_implementation="sdpa", **extra)
     model.eval()
 
-    def gen(reqs, chunk=CHUNK):
+    size = [CHUNK]
+
+    def gen(reqs):
+        # OLMo 2 keeps about nine times more key-value cache per token than Qwen 2.5. On one T4 it
+        # stopped at the same step in two sessions as the prompts grew, most likely out of memory.
+        # A batch that does not fit is split in half and tried again, and the smaller size is kept.
+        texts, i = [], 0
+        while i < len(reqs):
+            part = reqs[i:i + size[0]]
+            try:
+                texts += generate(part)
+                i += len(part)
+                continue
+            except torch.cuda.OutOfMemoryError:
+                if size[0] == 1:
+                    raise
+            # Outside the except block, so the traceback no longer holds the failed batch.
+            torch.cuda.empty_cache()
+            size[0] = max(1, size[0] // 2)
+            log(f"out of GPU memory, batches are now {size[0]} prompts")
+        return texts
+
+    def generate(part):
         texts = []
-        for i in range(0, len(reqs), chunk):
-            part = reqs[i:i + chunk]
-            prompts = [tok.apply_chat_template(merge_system(m) if fold else m, add_generation_prompt=True,
-                                               tokenize=False) for m, _, _ in part]
-            enc = tok(prompts, return_tensors="pt", padding=True, add_special_tokens=False).to(model.device)
-            torch.manual_seed(part[0][2])
-            with torch.no_grad():
-                out = model.generate(**enc, do_sample=True, temperature=0.8, top_p=0.95,
-                                     max_new_tokens=max(n for _, n, _ in part), pad_token_id=tok.pad_token_id)
-            for row, (_, n, _) in zip(out, part):
-                texts.append(tok.decode(row[enc.input_ids.shape[1]:][:n], skip_special_tokens=True))
+        prompts = [tok.apply_chat_template(merge_system(m) if fold else m, add_generation_prompt=True,
+                                           tokenize=False) for m, _, _ in part]
+        enc = tok(prompts, return_tensors="pt", padding=True, add_special_tokens=False).to(model.device)
+        torch.manual_seed(part[0][2])
+        with torch.no_grad():
+            out = model.generate(**enc, do_sample=True, temperature=0.8, top_p=0.95,
+                                 max_new_tokens=max(n for _, n, _ in part), pad_token_id=tok.pad_token_id)
+        for row, (_, n, _) in zip(out, part):
+            texts.append(tok.decode(row[enc.input_ids.shape[1]:][:n], skip_special_tokens=True))
         return texts
 
     return "transformers", gen
@@ -216,7 +244,7 @@ def run_wave(gen, prisons, hard_deadline):
                 written[i] = len(p.records)
     for i, p in enumerate(prisons):
         meta = dict(run=p.run_id, condition=p.condition, variant=p.variant, seed=p.seed, days=p.days,
-                    protocol=PROTOCOL, model=MODEL, quant=QUANT, complete=not cut or i not in pending,
+                    protocol=PROTOCOL, model=MODEL, quant=QUANT, compute=COMPUTE, complete=not cut or i not in pending,
                     agents=[{k: (sorted(v) if isinstance(v, set) else v) for k, v in a.items() if k != "diary"}
                             for a in p.agents])
         if meta["complete"]:
@@ -319,4 +347,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BaseException:
+        # Colab shows a crash only on screen, so it goes into run.log as well, which is kept.
+        import traceback
+        log("crashed:\n" + traceback.format_exc())
+        raise
