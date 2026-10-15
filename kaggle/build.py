@@ -3,6 +3,8 @@
     python kaggle/build.py --plan calm:2012:36 --hours 5.5
     python kaggle/build.py --plan calm:3000:12 --model allenai/OLMo-2-1124-7B-Instruct --slug cellblock-olmo
 
+Pass --owner with the Kaggle username of the account that will push the kernel.
+
 Each --plan block is variant:first_seed:number_of_seeds, and every seed runs as coached and
 as neutral. Push the folder with kaggle kernels push -p kaggle/push --accelerator NvidiaTeslaT4.
 """
@@ -18,6 +20,7 @@ ap.add_argument("--plan", nargs="+", default=["calm:2012:36"])
 ap.add_argument("--model", default="Qwen/Qwen2.5-7B-Instruct")
 ap.add_argument("--hours", type=float, default=2.5)
 ap.add_argument("--slug", default="cellblock")
+ap.add_argument("--owner", default="pragyaangaur", help="the Kaggle username that pushes and runs the kernel")
 ap.add_argument("--max-wave", type=int, default=36)
 ap.add_argument("--chunk", type=int, default=24)
 ap.add_argument("--try-vllm", action="store_true")
@@ -41,7 +44,7 @@ push = HERE / "push"
 push.mkdir(exist_ok=True)
 (push / "cellblock_kaggle.py").write_text(src)
 (push / "kernel-metadata.json").write_text(json.dumps({
-    "id": f"pragyaangaur/{a.slug}",
+    "id": f"{a.owner}/{a.slug}",
     "title": a.slug.replace("-", " ").title(),
     "code_file": "cellblock_kaggle.py",
     "language": "python",

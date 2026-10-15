@@ -40,14 +40,14 @@ The laptop runs six prisons per batch in lockstep with the process capped at 6.5
 On Kaggle, `kaggle/build.py` writes a kernel to `kaggle/push/` with `cellblock/sim.py` and a run plan embedded, and the Kaggle CLI starts it on two T4 GPUs:
 
 ```
-python kaggle/build.py --plan calm:2012:36 --hours 2.5
+python kaggle/build.py --plan calm:2012:36 --hours 11 --owner <kaggle username>
 kaggle kernels push -p kaggle/push --accelerator NvidiaTeslaT4
-kaggle kernels output pragyaangaur/cellblock -p results/kaggle-new
+kaggle kernels output <owner>/cellblock -p results/kaggle-new
 ```
 
 The kernel runs transformers in float16 and packs each wave with as many seeds as fit the hours given. The `--model` option runs another Hugging Face model, and chat templates without a system role are handled. Both runners write one JSONL file per prison after every step, so the analysis can be run on whatever exists.
 
-On Google Colab, [colab/cellblock_colab.ipynb](https://colab.research.google.com/github/pragyaangaur/LLM-Stanford-Prison-Experiment/blob/main/colab/cellblock_colab.ipynb) runs the same runner on one GPU and writes the records to Google Drive. A session that drops can be started again, and it skips the seeds that finished and reruns any seed with an unfinished prison. On a GPU with 20 GB or more the model runs in float16 as on Kaggle. On a T4 it runs in 4-bit NF4, and those prisons go under their own results tag and are never pooled with the Kaggle runs. The notebook runs OLMo 2 7B Instruct on the exploratory seeds by default.
+On Google Colab, [colab/cellblock_colab.ipynb](https://colab.research.google.com/github/pragyaangaur/LLM-Stanford-Prison-Experiment/blob/main/colab/cellblock_colab.ipynb) runs the same runner on one GPU and writes the records to Google Drive. A session that drops can be started again, and it skips the seeds that finished and reruns any seed with an unfinished prison. On a GPU with 20 GB or more the model runs in float16 as on Kaggle. On a T4 it runs in 4-bit NF4, and those prisons go under their own results tag and are never pooled with the Kaggle runs. The notebook runs OLMo 2 7B Instruct on the exploratory seeds by default. Two attempts on a free T4 on 6 October stopped on day 1 at the same step, most likely out of GPU memory, and no prison finished. The runner now splits a batch that does not fit, but that fix has not yet run on a GPU.
 
 ## Tests
 
