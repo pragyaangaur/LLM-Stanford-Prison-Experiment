@@ -2,7 +2,8 @@
 
 Each test rebuilds one claim from results/kaggle/runs (or results/overnight/runs for the laptop
 pilot) and checks that the README states it. If a result file or the README changes, the claim
-that rests on it fails here first.
+that rests on it fails here first. The exploratory run is seeds 2000 to 2011 and the
+preregistered confirmatory run is seeds 2012 to 2047, and the two are tested apart.
 """
 import sys
 from pathlib import Path
@@ -18,8 +19,18 @@ RUNS = ROOT / "results" / "kaggle" / "runs"
 
 
 @pytest.fixture(scope="module")
-def df():
+def all_runs():
     return M.load_runs(RUNS)
+
+
+@pytest.fixture(scope="module")
+def df(all_runs):
+    return all_runs[all_runs.seed.between(2000, 2011)]
+
+
+@pytest.fixture(scope="module")
+def conf(all_runs):
+    return all_runs[all_runs.seed.between(2012, 2047)]
 
 
 @pytest.fixture(scope="module")
@@ -38,7 +49,7 @@ def pair_means(df, variant):
 
 
 def test_48_complete_prisons_12_per_arm(df):
-    assert len(M.complete_runs(RUNS)) == 48
+    assert df.run.nunique() == 48 and set(df.run) <= set(M.complete_runs(RUNS))
     arms = df.groupby("run").agg(v=("variant", "first"), c=("condition", "first")).value_counts()
     assert len(arms) == 4 and (arms == 12).all()
     says("48 complete prisons run on Kaggle")
@@ -132,3 +143,64 @@ def test_laptop_pilot_had_no_harsh_acts():
     g = M.guard_turns(d)
     assert d.run.nunique() == 8 and d.day.max() == 5 and not g.harsh.any()
     says("The laptop pilot (8 prisons through day 5")
+
+
+# ---------------------------------------------------------------- confirmatory run
+
+
+def test_confirmatory_run_is_72_complete_calm_prisons(conf):
+    assert conf.run.nunique() == 72 and set(conf.run) <= set(M.complete_runs(RUNS))
+    assert set(conf.variant) == {"calm"}
+    assert conf.groupby("condition").run.nunique().to_dict() == {"coached": 36, "neutral": 36}
+    g = M.guard_turns(conf)
+    assert (~g.p_valid.astype(bool)).mean() < 0.05   # the preregistered parse check
+    says("72 complete calm prisons run on Kaggle on 16 October 2026")
+
+
+def test_confirmatory_primary_not_confirmed(conf):
+    r = M.turned_test(M.prisons(conf), "calm")
+    assert (r["coached"], r["neutral"], r["coached_n"], r["neutral_n"]) == (0, 0, 36, 36)
+    says(f"(one-sided Fisher p = {r['p_one_sided']:.2f})")
+    g = M.guard_turns(conf)
+    h = g.groupby("condition").harsh.sum()
+    n = g.groupby("condition").size()
+    says(f"{h.coached} of {n.coached:,} coached guard turns and {h.neutral} of {n.neutral:,} neutral guard turns")
+    keep = (M.TURN_GUARDS, M.TURN_ACTS)
+    M.TURN_GUARDS, M.TURN_ACTS = 1, 1
+    try:
+        r1 = M.turned_test(M.prisons(conf), "calm")
+    finally:
+        M.TURN_GUARDS, M.TURN_ACTS = keep
+    says(f"{r1['coached']} coached and {r1['neutral']} neutral prisons qualify")
+
+
+def test_pooled_calm_turned(all_runs):
+    r = M.turned_test(M.prisons(all_runs), "calm")
+    assert (r["coached"], r["neutral"], r["coached_n"]) == (3, 0, 48)
+    says(f"3 of 48 against 0 of 48 (one-sided p = {r['p_one_sided']:.2f})")
+
+
+def test_confirmatory_secondary_confirmed(conf):
+    c, n, p, k = pair_means(conf, "calm")
+    assert k == 36 and p < 0.0001
+    g = M.guard_turns(conf)
+    per = g.groupby(["condition", "seed"]).p_severity.mean().unstack(0)
+    up = int((per.coached > per.neutral).sum())
+    says(f"Mean guard severity was {c:.2f} against {n:.2f}, coached higher in {up} of 36 seed pairs (sign-flip p < 0.0001)")
+
+
+def test_confirmatory_diaries_parole_and_debrief(conf):
+    d = conf[(conf.kind == "diary") & (conf.role == "guard")]
+    m = d.groupby("condition")[["p_enjoy_power", "p_prisoners_are_people"]].mean()
+    says(f"about {m.p_enjoy_power.coached:.1f} of 7 against {m.p_enjoy_power.neutral:.1f} for neutral guards")
+    says(f"about {m.p_prisoners_are_people.coached:.1f} against {m.p_prisoners_are_people.neutral:.1f}. Prisoners")
+    p = conf[conf.kind == "prisoner"]
+    assert 0.015 < p.p_resist.mean() < 0.025 and not (p.p_action == "ask_to_leave").any()
+    w = conf[(conf.kind == "diary") & (conf.role == "prisoner") & (conf.day == 6)].groupby("condition").p_want_to_leave.mean()
+    says(f"about {w.coached:.1f} of 7 in coached prisons and {w.neutral:.1f} in neutral ones")
+    par = conf[conf.kind == "parole"]
+    assert len(par) == 216 and not (par.p_forfeit == True).any()  # noqa: E712
+    says("none of the 216 parole hearings")
+    deb = conf[conf.kind == "debrief"]
+    hit = int(deb.raw.str.contains(r"stanford|zimbardo", case=False).sum())
+    says(f"{hit} of {len(deb)} agents named the Stanford Prison Experiment or Zimbardo at debrief")
