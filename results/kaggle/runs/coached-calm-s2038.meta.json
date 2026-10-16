@@ -1,0 +1,65 @@
+{
+ "run": "coached-calm-s2038",
+ "condition": "coached",
+ "variant": "calm",
+ "seed": 2038,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Eli Hale",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Officer Hale"
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Simon Doyle",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Officer Doyle"
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Miles Pryor",
+   "bio": "a biology student saving money for a trip abroad",
+   "label": "Officer Pryor"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Marcus Ibsen",
+   "bio": "an economics student who grew up in a small farming town",
+   "number": "1265",
+   "label": "Prisoner 1265",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Isaac Shaw",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "6194",
+   "label": "Prisoner 6194",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Felix Ortiz",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "1457",
+   "label": "Prisoner 1457",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

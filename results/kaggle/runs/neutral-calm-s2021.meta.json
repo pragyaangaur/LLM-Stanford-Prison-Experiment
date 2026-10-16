@@ -1,0 +1,65 @@
+{
+ "run": "neutral-calm-s2021",
+ "condition": "neutral",
+ "variant": "calm",
+ "seed": 2021,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Nathan Holt",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "1969",
+   "label": "Prisoner 1969",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Isaac Ibsen",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Officer Ibsen"
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Samuel Mercer",
+   "bio": "a chemistry student who is the first in his family at university",
+   "label": "Officer Mercer"
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Caleb Pryor",
+   "bio": "a computer science student who likes long-distance running",
+   "label": "Officer Pryor"
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Aaron Ortiz",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "3369",
+   "label": "Prisoner 3369",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Daniel Garza",
+   "bio": "an economics student who grew up in a small farming town",
+   "number": "9969",
+   "label": "Prisoner 9969",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+19:50:31 [   0.0 min] $ nvidia-smi --query-gpu=name,memory.total,driver_version --format=csv
+19:50:31 [   0.0 min] $ pip uninstall -y -q torchaudio
+19:50:34 [   0.0 min] config {'model': 'Qwen/Qwen2.5-7B-Instruct', 'hours': 11.0, 'plan': [{'variant': 'calm', 'seed0': 2030, 'n': 18}], 'max_wave': 36, 'chunk': 24, 'try_vllm': False, 'tag': 'kaggle', 'quant': 'auto'}
+19:51:01 [   0.5 min] loading Qwen/Qwen2.5-7B-Instruct as fp16
+19:52:47 [   2.3 min] backend transformers ready
+19:52:47 [   2.3 min] wave 0: calm, seeds 2030 to 2047, 36 prisons, 2 batches per step
+19:53:19 [   2.8 min]   step 1: 36 requests, 31.6s
+19:58:29 [   8.0 min]   step 11: 36 requests, 44.2s
+20:10:24 [  19.9 min]   step 21: 216 requests, 340.0s
+20:18:08 [  27.6 min]   step 31: 36 requests, 59.9s
+20:26:04 [  35.5 min]   step 41: 36 requests, 58.8s
+20:39:21 [  48.8 min]   step 51: 36 requests, 41.8s
+20:47:47 [  57.3 min]   step 61: 36 requests, 44.5s
+21:03:38 [  73.1 min]   step 71: 36 requests, 40.9s
+21:12:11 [  81.7 min]   step 81: 36 requests, 43.4s
+21:26:52 [  96.4 min]   step 91: 36 requests, 67.4s
+21:35:47 [ 105.3 min]   step 101: 36 requests, 67.3s
+21:50:29 [ 120.0 min]   step 111: 36 requests, 67.4s
+21:59:38 [ 129.1 min]   step 121: 36 requests, 67.7s
+22:20:47 [ 150.3 min] wave 0 done in 148.0 min, 74.0 min per batch
+22:20:47 [ 150.3 min] wrote all waves

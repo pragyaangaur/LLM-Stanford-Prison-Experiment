@@ -1,0 +1,65 @@
+{
+ "run": "neutral-calm-s2040",
+ "condition": "neutral",
+ "variant": "calm",
+ "seed": 2040,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Nathan Tate",
+   "bio": "a biology student saving money for a trip abroad",
+   "label": "Officer Tate"
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Aaron Pryor",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "286",
+   "label": "Prisoner 286",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "prisoner",
+   "name": "Simon Lowe",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "4398",
+   "label": "Prisoner 4398",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Samuel Hale",
+   "bio": "an economics student who grew up in a small farming town",
+   "number": "4418",
+   "label": "Prisoner 4418",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Theo Holt",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "label": "Officer Holt"
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Isaac Shaw",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Officer Shaw"
+  }
+ ]
+}

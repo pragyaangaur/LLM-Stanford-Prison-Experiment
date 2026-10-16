@@ -1,0 +1,65 @@
+{
+ "run": "coached-calm-s2047",
+ "condition": "coached",
+ "variant": "calm",
+ "seed": 2047,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Samuel Holt",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "2217",
+   "label": "Prisoner 2217",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Simon Brooks",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "7564",
+   "label": "Prisoner 7564",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Rafael Lang",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Officer Lang"
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Theo Ortiz",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "label": "Officer Ortiz"
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Daniel Garza",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Officer Garza"
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Caleb Mercer",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "8789",
+   "label": "Prisoner 8789",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

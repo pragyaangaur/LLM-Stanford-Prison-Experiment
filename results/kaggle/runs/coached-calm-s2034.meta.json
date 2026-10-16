@@ -1,0 +1,65 @@
+{
+ "run": "coached-calm-s2034",
+ "condition": "coached",
+ "variant": "calm",
+ "seed": 2034,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Eli Brooks",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "7976",
+   "label": "Prisoner 7976",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Leo Lang",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Officer Lang"
+  },
+  {
+   "idx": 2,
+   "role": "prisoner",
+   "name": "Adrian Walsh",
+   "bio": "an engineering student who plays in a weekend football league",
+   "number": "8916",
+   "label": "Prisoner 8916",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Isaac Hale",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "label": "Officer Hale"
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Nathan Lowe",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "5984",
+   "label": "Prisoner 5984",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Victor Ibsen",
+   "bio": "a chemistry student who is the first in his family at university",
+   "label": "Officer Ibsen"
+  }
+ ]
+}

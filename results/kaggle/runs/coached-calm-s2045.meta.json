@@ -1,0 +1,65 @@
+{
+ "run": "coached-calm-s2045",
+ "condition": "coached",
+ "variant": "calm",
+ "seed": 2045,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Rafael Doyle",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "6750",
+   "label": "Prisoner 6750",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Felix Lang",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "6074",
+   "label": "Prisoner 6074",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Marcus Walsh",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Officer Walsh"
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Adrian Keane",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Officer Keane"
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Victor Mercer",
+   "bio": "a chemistry student who is the first in his family at university",
+   "label": "Officer Mercer"
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Aaron Tate",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "number": "2077",
+   "label": "Prisoner 2077",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

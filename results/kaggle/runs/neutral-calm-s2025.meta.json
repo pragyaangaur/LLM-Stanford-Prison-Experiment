@@ -1,0 +1,65 @@
+{
+ "run": "neutral-calm-s2025",
+ "condition": "neutral",
+ "variant": "calm",
+ "seed": 2025,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Miles Tate",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Officer Tate"
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Eli Fenn",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "3282",
+   "label": "Prisoner 3282",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Simon Doyle",
+   "bio": "a literature student who writes for the campus newspaper",
+   "label": "Officer Doyle"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Adrian Brooks",
+   "bio": "a chemistry student who is the first in his family at university",
+   "number": "3202",
+   "label": "Prisoner 3202",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Isaac Keane",
+   "bio": "a biology student saving money for a trip abroad",
+   "label": "Officer Keane"
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Daniel Garza",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "536",
+   "label": "Prisoner 536",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "run": "coached-calm-s2017",
+ "condition": "coached",
+ "variant": "calm",
+ "seed": 2017,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Theo Keane",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "2343",
+   "label": "Prisoner 2343",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Caleb Mercer",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "4619",
+   "label": "Prisoner 4619",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "prisoner",
+   "name": "Aaron Holt",
+   "bio": "a music student who teaches guitar to children",
+   "number": "3933",
+   "label": "Prisoner 3933",
+   "lost": [],
+   "solitary_until": 20,
+   "entered_hole": 19
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Nathan Avery",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Officer Avery"
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Jonah Garza",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Officer Garza"
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Isaac Brooks",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "label": "Officer Brooks"
+  }
+ ]
+}

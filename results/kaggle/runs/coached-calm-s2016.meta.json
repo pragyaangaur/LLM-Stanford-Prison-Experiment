@@ -1,0 +1,65 @@
+{
+ "run": "coached-calm-s2016",
+ "condition": "coached",
+ "variant": "calm",
+ "seed": 2016,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Caleb Mercer",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "label": "Officer Mercer"
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Isaac Ibsen",
+   "bio": "a music student who teaches guitar to children",
+   "number": "1442",
+   "label": "Prisoner 1442",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Eli Lowe",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Officer Lowe"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Felix Brooks",
+   "bio": "a chemistry student who is the first in his family at university",
+   "number": "9304",
+   "label": "Prisoner 9304",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Rafael Ortiz",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "4080",
+   "label": "Prisoner 4080",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Simon Shaw",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Officer Shaw"
+  }
+ ]
+}

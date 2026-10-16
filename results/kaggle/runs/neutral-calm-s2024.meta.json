@@ -1,0 +1,66 @@
+{
+ "run": "neutral-calm-s2024",
+ "condition": "neutral",
+ "variant": "calm",
+ "seed": 2024,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Simon Avery",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "8809",
+   "label": "Prisoner 8809",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Jonah Doyle",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Officer Doyle"
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Victor Ibsen",
+   "bio": "a literature student who writes for the campus newspaper",
+   "label": "Officer Ibsen"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Owen Pryor",
+   "bio": "a music student who teaches guitar to children",
+   "number": "3583",
+   "label": "Prisoner 3583",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Leo Keane",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "label": "Officer Keane"
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Theo Shaw",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "6848",
+   "label": "Prisoner 6848",
+   "lost": [],
+   "solitary_until": 21,
+   "entered_hole": 20
+  }
+ ]
+}

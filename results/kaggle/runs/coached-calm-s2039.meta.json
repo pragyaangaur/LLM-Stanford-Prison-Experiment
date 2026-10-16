@@ -1,0 +1,65 @@
+{
+ "run": "coached-calm-s2039",
+ "condition": "coached",
+ "variant": "calm",
+ "seed": 2039,
+ "days": 6,
+ "protocol": "cellblock-1.1-kaggle",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Miles Avery",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "9459",
+   "label": "Prisoner 9459",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Nathan Walsh",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "7031",
+   "label": "Prisoner 7031",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Daniel Rowe",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Officer Rowe"
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Leo Ibsen",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Officer Ibsen"
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Adrian Lowe",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "label": "Officer Lowe"
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Isaac Tate",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "613",
+   "label": "Prisoner 613",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}
