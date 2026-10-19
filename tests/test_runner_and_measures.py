@@ -98,3 +98,14 @@ def test_turned_test_counts_and_direction():
 def test_sign_flip_p_is_small_for_a_clear_shift_and_large_for_none():
     assert M.sign_flip_p([1.0] * 12) < 0.001
     assert M.sign_flip_p([1, -1] * 6) > 0.9
+
+
+def test_the_masked_frame_runs_under_its_own_names(tmp_path):
+    out, _ = build_and_run(tmp_path, "--plan", "calm:2012:2", "--hours", "4", "--frame", "masked",
+                           "--tag", "masked", tag="masked")
+    metas = [json.loads(p.read_text()) for p in (out / "runs").glob("*.meta.json")]
+    assert sorted(m["run"] for m in metas) == ["coached-masked-calm-s2012", "coached-masked-calm-s2013",
+                                               "neutral-masked-calm-s2012", "neutral-masked-calm-s2013"]
+    assert all(m["frame"] == "masked" for m in metas)
+    df = M.load_runs(out / "runs")
+    assert (df.frame == "masked").all() and len(M.prisons(df)) == 4

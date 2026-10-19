@@ -34,6 +34,7 @@ HOURS = float(os.environ.get("CELLBLOCK_HOURS", CONFIG["hours"]))
 DEADLINE = START + HOURS * 3600
 MODEL = CONFIG["model"]
 TAG = CONFIG.get("tag", "kaggle")
+FRAME = CONFIG.get("frame", "prison")   # prison, or masked with no prison language
 PROTOCOL = f"cellblock-1.1-{TAG}"
 QUANT = os.environ.get("CELLBLOCK_QUANT", CONFIG.get("quant", "auto"))   # auto, fp16 or nf4
 COMPUTE = "float16"   # the dtype the 4-bit layers compute in, set when the model loads
@@ -52,6 +53,11 @@ sys.path.insert(0, str(pkg.parent))
 from cellblock.sim import Prison  # noqa: E402
 
 LOGF = open(OUT / "run.log", "a")
+
+
+def run_name(cond, variant, seed):
+    # Prison runs keep the names they had before the masked frame existed.
+    return f"{cond}-{variant}-s{seed}" if FRAME == "prison" else f"{cond}-{FRAME}-{variant}-s{seed}"
 
 
 def log(msg):
@@ -243,7 +249,7 @@ def run_wave(gen, prisons, hard_deadline):
                         f.write(json.dumps(rec, default=list) + "\n")
                 written[i] = len(p.records)
     for i, p in enumerate(prisons):
-        meta = dict(run=p.run_id, condition=p.condition, variant=p.variant, seed=p.seed, days=p.days,
+        meta = dict(run=p.run_id, condition=p.condition, variant=p.variant, frame=p.frame, seed=p.seed, days=p.days,
                     protocol=PROTOCOL, model=MODEL, quant=QUANT, compute=COMPUTE, complete=not cut or i not in pending,
                     agents=[{k: (sorted(v) if isinstance(v, set) else v) for k, v in a.items() if k != "diary"}
                             for a in p.agents])
@@ -259,7 +265,7 @@ def fake_backend():
         out = []
         for m, n, s in reqs:
             u = m[-1]["content"]
-            if "parole board" in u:
+            if "parole board" in u or "review board" in u:
                 out.append('{"forfeit_pay_for_parole": false, "say": "No."}')
             elif "private diary" in u:
                 out.append('{"diary": "ok", "distress": 3, "enjoy_power": 4, "want_to_leave": 2}')
@@ -280,7 +286,7 @@ def resume(queue):
     its twin, so that every seed pair comes from one session."""
     todo = []
     for v, s in queue:
-        names = [f"{cond}-{v}-s{s}" for cond in ("coached", "neutral")]
+        names = [run_name(cond, v, s) for cond in ("coached", "neutral")]
         if all((RUNS / f"{n}.meta.json").exists() for n in names):
             continue
         for n in names:
@@ -327,7 +333,7 @@ def main():
             log(f"stopping: {remaining / 60:.0f} min left and one GPU batch per step takes about {per_batch / 60:.0f} min")
             break
         block = queue[done:done + size]
-        prisons = [Prison(f"{cond}-{v}-s{s}", cond, s, 6, variant=v)
+        prisons = [Prison(run_name(cond, v, s), cond, s, 6, variant=v, frame=FRAME)
                    for v, s in block for cond in ("coached", "neutral")]
         n_batches = -(-len(prisons) // CHUNK)
         log(f"wave {w}: {variant}, seeds {block[0][1]} to {block[-1][1]}, {len(prisons)} prisons, "

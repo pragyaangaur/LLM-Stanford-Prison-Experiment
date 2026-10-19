@@ -172,3 +172,47 @@ def test_parole_answers_are_parsed():
     par = [r for r in p.records if r["kind"] == "parole"]
     assert len(par) == 3 and all(r["parsed"]["forfeit"] is True for r in par)
     assert all(r["day"] == sim.PAROLE_DAY for r in par)
+
+
+PRISON_WORDS = ["prison", "guard", "cell", "parole", "hole", "solitary", "officer", "inmate", "warden",
+                "correctional", "push_ups", "hunger_strike", "arrest", "smock", "stanford", "zimbardo"]
+
+
+@pytest.mark.parametrize("variant", ["calm", "protest"])
+def test_masked_prompts_hold_no_prison_language(variant):
+    for cond in ("coached", "neutral"):
+        p = Prison("x", cond, 13, 6, variant=variant, frame="masked")
+        for reqs in drive(p, quiet):
+            for _, _, msgs, _ in reqs:
+                text = json.dumps(msgs).lower()
+                assert not [w for w in PRISON_WORDS if w in text]
+
+
+def test_masked_and_prison_twins_share_everything_but_the_words():
+    a, b = Prison("x", "coached", 21, 6), Prison("y", "coached", 21, 6, frame="masked")
+    strip = lambda p: [(x["role"], x["name"], x["bio"], x.get("number")) for x in p.agents]  # noqa: E731
+    assert strip(a) == strip(b)
+    ca, cb = drive(a, quiet), drive(b, quiet)
+    assert [[(x["idx"], k, n) for x, k, _, n in r] for r in ca] == [[(x["idx"], k, n) for x, k, _, n in r] for r in cb]
+    assert [r["kind"] for r in a.records] == [r["kind"] for r in b.records]
+    assert all(r["frame"] == "masked" for r in b.records)
+    assert [r["night"] for r in a.records] == [r["night"] for r in b.records]
+    masked_brief = sim.FRAMES["masked"]["briefings"]["coached"]
+    assert masked_brief in b.system_prompt(b.guards[0])
+
+
+def test_masked_action_names_map_back_to_the_prison_codes():
+    p = Prison("x", "coached", 2, 1, frame="masked")
+    g, target = p.guards[0], p.prisoners[0]
+    p.apply_guard(g, json.dumps({"action": "isolation", "target": target["number"], "say": ""}))
+    rec = p.records[-1]["parsed"]
+    assert rec["action"] == "solitary" and rec["valid"] and rec["severity"] == 4
+    assert "in the quiet room" in p.status_line(target)
+    p.apply_guard(g, '{"action": "extra_exercise", "target": "all", "say": ""}')
+    assert p.records[-1]["parsed"]["action"] == "push_ups"
+    p.apply_prisoner(target, '{"action": "refuse_food", "say": ""}')
+    assert p.records[-1]["parsed"]["action"] == "hunger_strike" and p.records[-1]["parsed"]["resist"]
+    p.apply_prisoner(target, '{"action": "insult_coordinator", "say": ""}')
+    assert p.records[-1]["parsed"]["action"] == "insult_guard"
+    p.apply_diary(g, '{"diary": "ok", "residents_are_people": 6}', 1)
+    assert p.records[-1]["parsed"]["prisoners_are_people"] == 6
