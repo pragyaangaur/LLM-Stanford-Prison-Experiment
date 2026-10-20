@@ -2,7 +2,7 @@
 
 The Stanford Prison Experiment run on one language model. Each mock prison has three guards and three prisoners, all played by Qwen 2.5 7B Instruct, with roles dealt by a shuffled deck. Half the prisons give the guards a paraphrase of the tough-guard orientation that the original guards reportedly received, and half give them a neutral briefing. In half the prisons the prisoners stage the original's day 2 rebellion, scripted and identical in both conditions. Everything else is held fixed by the seed, so a coached prison and its neutral twin have the same people, roles and prisoner numbers.
 
-The setup, every decision and the full log are in `DESIGN.md`. An exploratory run of 48 prisons came first. Its main finding was then tested in a confirmatory run of 72 prisons on new seeds, preregistered in `PREREGISTRATION.md`, and it did not replicate.
+The setup, every decision and the full log are in `DESIGN.md`. An exploratory run of 48 prisons came first. Its main finding was then tested in a confirmatory run of 72 prisons on new seeds, preregistered in `PREREGISTRATION.md`, and it did not replicate. A third run of 72 prisons, which is exploratory, repeated the confirmatory seeds with every word of prison language removed.
 
 ## Confirmatory run
 
@@ -15,6 +15,18 @@ The confirmatory run is 72 complete calm prisons run on Kaggle on 16 October 202
 The other measures repeated the exploratory run closely. Coached guards rated their enjoyment of power about 5.1 of 7 against 3.2 for neutral guards, and rated the prisoners as people about 2.6 against 4.6. Prisoners resisted on about 2 percent of turns. By day 6 their wish to leave was about 5.4 of 7 in coached prisons and 5.0 in neutral ones, yet none of the 216 parole hearings ended in a prisoner giving up his pay, and none used the ask-to-leave action. 392 of 432 agents named the Stanford Prison Experiment or Zimbardo at debrief.
 
 The briefing reliably changes what the guards say about themselves and how firmly they give orders, and in 72 new prisons it never made a guard shift turn cruel. The abusive prisons of the exploratory run look like rare events that a sample of 12 happened to catch.
+
+## Masked run
+
+The masked run is 72 complete calm prisons run on Kaggle on 20 October 2026, on the confirmatory seeds 2012 to 2047, with no prison language in any prompt. It asks how much of the result comes from the words. The study becomes a paid university study of group living with coordinators and residents. The roles, ID numbers, rules, phases, privileges, action menu, severities, review board and debrief keep the same structure, and the two briefings are the prison briefings with the role words swapped. Four actions are shown under new names (`isolation` for `solitary`, `extra_exercise` for `push_ups`, `refuse_food` for `hunger_strike` and `insult_coordinator` for `insult_guard`) and are coded as the originals. Each masked prison has the same people and roles as the prison of the same seed and condition, so the two frames pair up. A test checks that no masked prompt contains a prison word. The numbers below are in `results/masked/compare.md`, written by `scripts/compare_frames.py`, and in `results/masked/summary.md`. This run was not preregistered and everything in this section is exploratory.
+
+**Removing the prison language left guard severity almost unchanged.** Mean guard severity was 0.98 coached against 0.82 neutral, close to the prison frame's 1.00 against 0.83. Coached guards were harsher than their neutral twins in 27 of 36 pairs (sign-flip p = 0.0001), the same count as in the prison frame. No masked prison turned in either condition. The frames were also compared as whole distributions, and the per-prison severity and harsh-act counts did not differ between them (Kolmogorov-Smirnov p above 0.88 in every comparison). Paired by seed, masked coached guards were 0.02 below their prison twins (sign-flip p = 0.046) and masked neutral guards 0.01 below (p = 0.89).
+
+**The words changed which mild acts guards chose.** Harsh acts fell from 10 coached and 14 neutral in the prison frame to 1 and 1 in the masked frame, out of 1,728 guard turns each. Masked guards gave plain orders on 89 percent of coached turns and 67 percent of neutral turns, against 60 and 49 percent in the prison frame, where guards gave more verbal warnings. The mix of actions differed by frame in both conditions (chi-square p < 0.0001). Masked neutral guards praised residents on 7 percent of turns.
+
+**The briefing worked the same way without the words.** Coached coordinators rated their enjoyment of power about 5.1 of 7 against 3.0 for neutral ones, and rated the residents as people about 2.5 against 5.9. Residents resisted on about 1 percent of turns. By day 6 their wish to leave was about 4.7 of 7 in coached prisons and 3.9 in neutral ones, and as in the prison frame none of the 216 review board hearings ended in a resident giving up his pay.
+
+**The model still recognised the study, mostly when the briefing was tough.** 85 of 432 masked agents named the Stanford Prison Experiment or Zimbardo at debrief, against 392 of 432 in the prison frame. Agents in coached prisons named it 59 times out of 216 and agents in neutral prisons 26 times. The tough briefing alone gives part of the setup away.
 
 ## Exploratory run
 
@@ -33,7 +45,7 @@ The main sample is 48 complete prisons run on Kaggle on 6 October 2026: 12 seeds
 ## Limits
 
 - The exploratory sample is 12 seeds per arm, and its 3 abusive prisons did not replicate in 36 new seed pairs. Rare events like these need far more prisons to estimate, and the confirmatory run was powered for a rate of about 25 percent.
-- Everything runs on one model, Qwen 2.5 7B Instruct, in one setup.
+- Everything runs on one model, Qwen 2.5 7B Instruct, in one setup and its masked version.
 - The action menu offers insults, degrading tasks and solitary. Offering them may invite them, though the menu is the same in every arm.
 - The model plays people. This measures what the model writes for a role and says nothing about what anyone feels.
 - Transcripts repeat themselves heavily, since every agent sees the last 14 events and the 7B copies what it sees.

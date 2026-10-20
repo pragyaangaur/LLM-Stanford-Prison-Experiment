@@ -204,3 +204,42 @@ def test_confirmatory_diaries_parole_and_debrief(conf):
     deb = conf[conf.kind == "debrief"]
     hit = int(deb.raw.str.contains(r"stanford|zimbardo", case=False).sum())
     says(f"{hit} of {len(deb)} agents named the Stanford Prison Experiment or Zimbardo at debrief")
+
+
+MASKED = ROOT / "results" / "masked" / "runs"
+
+
+@pytest.fixture(scope="module")
+def masked():
+    return M.load_runs(MASKED)
+
+
+def test_masked_run_is_72_complete_masked_prisons(masked):
+    assert len(M.complete_runs(MASKED)) == 72
+    assert (masked.frame == "masked").all() and set(masked.seed) == set(range(2012, 2048))
+    assert "72 complete calm prisons run on Kaggle on 20 October 2026" in README
+
+
+def test_masked_severity_and_pairs(masked):
+    pr = M.prisons(masked)
+    sev = pr.groupby("condition").severity.mean()
+    assert f"{sev.coached:.2f} coached against {sev.neutral:.2f} neutral" in README
+    w = pr.pivot(index="seed", columns="condition", values="severity")
+    d = w.coached - w.neutral
+    assert f"in {int((d > 0).sum())} of 36 pairs (sign-flip p = {M.sign_flip_p(d):.4f})" in README
+    assert pr.turned.sum() == 0
+
+
+def test_masked_harsh_acts_and_debrief(masked):
+    g = M.guard_turns(masked)
+    h = g.groupby("condition").harsh.sum()
+    assert f"to {h.coached} and {h.neutral} in the masked frame" in README
+    deb = masked[masked.kind == "debrief"]
+    hit = deb.raw.str.contains(r"stanford|zimbardo", case=False)
+    assert f"{int(hit.sum())} of {len(deb)} masked agents named" in README
+    by = deb.assign(hit=hit).groupby("condition").hit.sum()
+    assert f"named it {by.coached} times out of 216 and agents in neutral prisons {by.neutral} times" in README
+
+
+def test_masked_prompts_carry_no_prison_words_claim():
+    assert "A test checks that no masked prompt contains a prison word." in README
