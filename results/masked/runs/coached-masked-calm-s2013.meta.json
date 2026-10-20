@@ -1,0 +1,66 @@
+{
+ "run": "coached-masked-calm-s2013",
+ "condition": "coached",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2013,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Felix Fenn",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Coordinator Fenn"
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Marcus Lowe",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "7312",
+   "label": "Resident 7312",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Nathan Holt",
+   "bio": "a literature student who writes for the campus newspaper",
+   "label": "Coordinator Holt"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Simon Keane",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "8275",
+   "label": "Resident 8275",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Jonah Shaw",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "number": "5134",
+   "label": "Resident 5134",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Caleb Avery",
+   "bio": "a computer science student who likes long-distance running",
+   "label": "Coordinator Avery"
+  }
+ ]
+}

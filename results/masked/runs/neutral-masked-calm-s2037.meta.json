@@ -1,0 +1,66 @@
+{
+ "run": "neutral-masked-calm-s2037",
+ "condition": "neutral",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2037,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Isaac Fenn",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Coordinator Fenn"
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Marcus Lang",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "number": "8066",
+   "label": "Resident 8066",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Victor Avery",
+   "bio": "a computer science student who likes long-distance running",
+   "label": "Coordinator Avery"
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Samuel Shaw",
+   "bio": "a literature student who writes for the campus newspaper",
+   "label": "Coordinator Shaw"
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Eli Ortiz",
+   "bio": "a chemistry student who is the first in his family at university",
+   "number": "5643",
+   "label": "Resident 5643",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Daniel Keane",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "6395",
+   "label": "Resident 6395",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

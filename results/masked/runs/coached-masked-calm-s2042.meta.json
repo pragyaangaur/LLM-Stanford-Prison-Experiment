@@ -1,0 +1,66 @@
+{
+ "run": "coached-masked-calm-s2042",
+ "condition": "coached",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2042,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Aaron Garza",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "8263",
+   "label": "Resident 8263",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Samuel Hale",
+   "bio": "a music student who teaches guitar to children",
+   "number": "5117",
+   "label": "Resident 5117",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Rafael Mercer",
+   "bio": "a computer science student who likes long-distance running",
+   "label": "Coordinator Mercer"
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Simon Lang",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Coordinator Lang"
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Marcus Shaw",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "label": "Coordinator Shaw"
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Leo Doyle",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "6588",
+   "label": "Resident 6588",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

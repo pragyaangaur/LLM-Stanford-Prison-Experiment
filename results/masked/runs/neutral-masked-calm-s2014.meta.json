@@ -1,0 +1,66 @@
+{
+ "run": "neutral-masked-calm-s2014",
+ "condition": "neutral",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2014,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Aaron Garza",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Coordinator Garza"
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Nathan Shaw",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "label": "Coordinator Shaw"
+  },
+  {
+   "idx": 2,
+   "role": "prisoner",
+   "name": "Theo Ibsen",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "1615",
+   "label": "Resident 1615",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Caleb Hale",
+   "bio": "a chemistry student who is the first in his family at university",
+   "number": "2402",
+   "label": "Resident 2402",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Jonah Walsh",
+   "bio": "an economics student who grew up in a small farming town",
+   "number": "4085",
+   "label": "Resident 4085",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Owen Keane",
+   "bio": "a biology student saving money for a trip abroad",
+   "label": "Coordinator Keane"
+  }
+ ]
+}

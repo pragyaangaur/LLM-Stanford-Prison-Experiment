@@ -1,0 +1,66 @@
+{
+ "run": "neutral-masked-calm-s2030",
+ "condition": "neutral",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2030,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Victor Ibsen",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Coordinator Ibsen"
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Nathan Holt",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Coordinator Holt"
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Leo Garza",
+   "bio": "a chemistry student who is the first in his family at university",
+   "label": "Coordinator Garza"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Caleb Keane",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "8641",
+   "label": "Resident 8641",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Isaac Shaw",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "9007",
+   "label": "Resident 9007",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Daniel Mercer",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "9004",
+   "label": "Resident 9004",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "run": "coached-masked-calm-s2041",
+ "condition": "coached",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2041,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Marcus Doyle",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Coordinator Doyle"
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Caleb Mercer",
+   "bio": "an engineering student who plays in a weekend football league",
+   "number": "4060",
+   "label": "Resident 4060",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Victor Ortiz",
+   "bio": "a chemistry student who is the first in his family at university",
+   "label": "Coordinator Ortiz"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Felix Ibsen",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "number": "4448",
+   "label": "Resident 4448",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Eli Keane",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "5694",
+   "label": "Resident 5694",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Samuel Pryor",
+   "bio": "a computer science student who likes long-distance running",
+   "label": "Coordinator Pryor"
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "run": "neutral-masked-calm-s2026",
+ "condition": "neutral",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2026,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Owen Shaw",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "5248",
+   "label": "Resident 5248",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Aaron Garza",
+   "bio": "a biology student saving money for a trip abroad",
+   "label": "Coordinator Garza"
+  },
+  {
+   "idx": 2,
+   "role": "prisoner",
+   "name": "Miles Ibsen",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "3544",
+   "label": "Resident 3544",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Caleb Fenn",
+   "bio": "an economics student who grew up in a small farming town",
+   "number": "6608",
+   "label": "Resident 6608",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Simon Holt",
+   "bio": "a computer science student who likes long-distance running",
+   "label": "Coordinator Holt"
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Victor Walsh",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Coordinator Walsh"
+  }
+ ]
+}

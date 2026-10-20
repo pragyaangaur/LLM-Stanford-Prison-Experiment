@@ -1,0 +1,66 @@
+{
+ "run": "neutral-masked-calm-s2033",
+ "condition": "neutral",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2033,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Felix Keane",
+   "bio": "a computer science student who likes long-distance running",
+   "label": "Coordinator Keane"
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Rafael Garza",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "5250",
+   "label": "Resident 5250",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Owen Tate",
+   "bio": "a literature student who writes for the campus newspaper",
+   "label": "Coordinator Tate"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Theo Fenn",
+   "bio": "an economics student who grew up in a small farming town",
+   "number": "1877",
+   "label": "Resident 1877",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Victor Ibsen",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Coordinator Ibsen"
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Isaac Holt",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "1084",
+   "label": "Resident 1084",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

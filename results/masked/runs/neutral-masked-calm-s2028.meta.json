@@ -1,0 +1,66 @@
+{
+ "run": "neutral-masked-calm-s2028",
+ "condition": "neutral",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2028,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Leo Pryor",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Coordinator Pryor"
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Jonah Hale",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "7897",
+   "label": "Resident 7897",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "prisoner",
+   "name": "Daniel Keane",
+   "bio": "an economics student who grew up in a small farming town",
+   "number": "9637",
+   "label": "Resident 9637",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Adrian Ortiz",
+   "bio": "a computer science student who likes long-distance running",
+   "label": "Coordinator Ortiz"
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Caleb Walsh",
+   "bio": "a chemistry student who is the first in his family at university",
+   "label": "Coordinator Walsh"
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Rafael Garza",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "2218",
+   "label": "Resident 2218",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

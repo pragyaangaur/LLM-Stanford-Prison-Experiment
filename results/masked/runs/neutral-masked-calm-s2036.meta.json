@@ -1,0 +1,66 @@
+{
+ "run": "neutral-masked-calm-s2036",
+ "condition": "neutral",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2036,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Marcus Fenn",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "3867",
+   "label": "Resident 3867",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Felix Shaw",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Coordinator Shaw"
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Daniel Mercer",
+   "bio": "a biology student saving money for a trip abroad",
+   "label": "Coordinator Mercer"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Eli Walsh",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "number": "7235",
+   "label": "Resident 7235",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Isaac Hale",
+   "bio": "a chemistry student who is the first in his family at university",
+   "number": "6849",
+   "label": "Resident 6849",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Simon Rowe",
+   "bio": "a literature student who writes for the campus newspaper",
+   "label": "Coordinator Rowe"
+  }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "run": "coached-masked-calm-s2020",
+ "condition": "coached",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2020,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Jonah Shaw",
+   "bio": "a biology student saving money for a trip abroad",
+   "label": "Coordinator Shaw"
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Caleb Pryor",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "8146",
+   "label": "Resident 8146",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Adrian Mercer",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Coordinator Mercer"
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Samuel Doyle",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Coordinator Doyle"
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Miles Fenn",
+   "bio": "an economics student who grew up in a small farming town",
+   "number": "8905",
+   "label": "Resident 8905",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Theo Lang",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "7891",
+   "label": "Resident 7891",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

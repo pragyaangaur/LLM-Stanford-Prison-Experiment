@@ -1,0 +1,66 @@
+{
+ "run": "coached-masked-calm-s2044",
+ "condition": "coached",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2044,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Owen Ibsen",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Coordinator Ibsen"
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Aaron Lowe",
+   "bio": "a literature student who writes for the campus newspaper",
+   "label": "Coordinator Lowe"
+  },
+  {
+   "idx": 2,
+   "role": "prisoner",
+   "name": "Miles Brooks",
+   "bio": "a biology student saving money for a trip abroad",
+   "number": "4249",
+   "label": "Resident 4249",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Isaac Shaw",
+   "bio": "a music student who teaches guitar to children",
+   "number": "4161",
+   "label": "Resident 4161",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Leo Garza",
+   "bio": "a chemistry student who is the first in his family at university",
+   "label": "Coordinator Garza"
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Rafael Keane",
+   "bio": "an economics student who grew up in a small farming town",
+   "number": "6499",
+   "label": "Resident 6499",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

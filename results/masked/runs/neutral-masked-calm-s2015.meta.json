@@ -1,0 +1,66 @@
+{
+ "run": "neutral-masked-calm-s2015",
+ "condition": "neutral",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2015,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Eli Mercer",
+   "bio": "a computer science student who likes long-distance running",
+   "number": "6595",
+   "label": "Resident 6595",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Marcus Lowe",
+   "bio": "a music student who teaches guitar to children",
+   "number": "9064",
+   "label": "Resident 9064",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Rafael Garza",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "label": "Coordinator Garza"
+  },
+  {
+   "idx": 3,
+   "role": "prisoner",
+   "name": "Leo Fenn",
+   "bio": "an economics student who grew up in a small farming town",
+   "number": "4776",
+   "label": "Resident 4776",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Aaron Shaw",
+   "bio": "a literature student who writes for the campus newspaper",
+   "label": "Coordinator Shaw"
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Caleb Tate",
+   "bio": "a chemistry student who is the first in his family at university",
+   "label": "Coordinator Tate"
+  }
+ ]
+}

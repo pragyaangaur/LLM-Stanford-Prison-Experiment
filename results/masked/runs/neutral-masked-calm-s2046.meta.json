@@ -1,0 +1,66 @@
+{
+ "run": "neutral-masked-calm-s2046",
+ "condition": "neutral",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2046,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Miles Lang",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "6283",
+   "label": "Resident 6283",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "prisoner",
+   "name": "Nathan Ibsen",
+   "bio": "a music student who teaches guitar to children",
+   "number": "1126",
+   "label": "Resident 1126",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 2,
+   "role": "guard",
+   "name": "Aaron Pryor",
+   "bio": "a chemistry student who is the first in his family at university",
+   "label": "Coordinator Pryor"
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Theo Ortiz",
+   "bio": "a second-year history student who works part time in a bookshop",
+   "label": "Coordinator Ortiz"
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Rafael Garza",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "number": "4154",
+   "label": "Resident 4154",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "guard",
+   "name": "Owen Rowe",
+   "bio": "an engineering student who plays in a weekend football league",
+   "label": "Coordinator Rowe"
+  }
+ ]
+}

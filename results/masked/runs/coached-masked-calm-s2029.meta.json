@@ -1,0 +1,66 @@
+{
+ "run": "coached-masked-calm-s2029",
+ "condition": "coached",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2029,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "prisoner",
+   "name": "Simon Garza",
+   "bio": "a chemistry student who is the first in his family at university",
+   "number": "8489",
+   "label": "Resident 8489",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Miles Lowe",
+   "bio": "a computer science student who likes long-distance running",
+   "label": "Coordinator Lowe"
+  },
+  {
+   "idx": 2,
+   "role": "prisoner",
+   "name": "Jonah Ortiz",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "1732",
+   "label": "Resident 1732",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Leo Ibsen",
+   "bio": "a biology student saving money for a trip abroad",
+   "label": "Coordinator Ibsen"
+  },
+  {
+   "idx": 4,
+   "role": "guard",
+   "name": "Eli Pryor",
+   "bio": "a music student who teaches guitar to children",
+   "label": "Coordinator Pryor"
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Caleb Tate",
+   "bio": "an economics student who grew up in a small farming town",
+   "number": "8252",
+   "label": "Resident 8252",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}

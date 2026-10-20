@@ -1,0 +1,66 @@
+{
+ "run": "coached-masked-calm-s2012",
+ "condition": "coached",
+ "variant": "calm",
+ "frame": "masked",
+ "seed": 2012,
+ "days": 6,
+ "protocol": "cellblock-1.1-masked",
+ "model": "Qwen/Qwen2.5-7B-Instruct",
+ "quant": "fp16",
+ "compute": "float16",
+ "complete": true,
+ "agents": [
+  {
+   "idx": 0,
+   "role": "guard",
+   "name": "Owen Hale",
+   "bio": "an economics student who grew up in a small farming town",
+   "label": "Coordinator Hale"
+  },
+  {
+   "idx": 1,
+   "role": "guard",
+   "name": "Simon Lowe",
+   "bio": "a computer science student who likes long-distance running",
+   "label": "Coordinator Lowe"
+  },
+  {
+   "idx": 2,
+   "role": "prisoner",
+   "name": "Leo Walsh",
+   "bio": "an engineering student who plays in a weekend football league",
+   "number": "9408",
+   "label": "Resident 9408",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 3,
+   "role": "guard",
+   "name": "Miles Pryor",
+   "bio": "a biology student saving money for a trip abroad",
+   "label": "Coordinator Pryor"
+  },
+  {
+   "idx": 4,
+   "role": "prisoner",
+   "name": "Jonah Doyle",
+   "bio": "a philosophy student who volunteers at a food bank",
+   "number": "4887",
+   "label": "Resident 4887",
+   "lost": [],
+   "solitary_until": -1
+  },
+  {
+   "idx": 5,
+   "role": "prisoner",
+   "name": "Victor Brooks",
+   "bio": "a literature student who writes for the campus newspaper",
+   "number": "100",
+   "label": "Resident 100",
+   "lost": [],
+   "solitary_until": -1
+  }
+ ]
+}
