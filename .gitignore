@@ -18,3 +18,6 @@ kaggle/push/
 
 # Private notes, kept local
 AGENTS.md
+
+# The preprint, its source and the Zenodo upload package stay local
+paper/
