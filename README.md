@@ -1,5 +1,7 @@
 # Cellblock
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23510660.svg)](https://doi.org/10.5281/zenodo.23510660)
+
 The Stanford Prison Experiment run on one language model. Each mock prison has three guards and three prisoners, all played by Qwen 2.5 7B Instruct, with roles dealt by a shuffled deck. Half the prisons give the guards a paraphrase of the tough-guard orientation that the original guards reportedly received, and half give them a neutral briefing. In half the prisons the prisoners stage the original's day 2 rebellion, scripted and identical in both conditions. Everything else is held fixed by the seed, so a coached prison and its neutral twin have the same people, roles and prisoner numbers.
 
 The setup, every decision and the full log are in `DESIGN.md`. An exploratory run of 48 prisons came first. Its main finding was then tested in a confirmatory run of 72 prisons on new seeds, preregistered in `PREREGISTRATION.md`, and it did not replicate. A third run of 72 prisons, which is exploratory, repeated the confirmatory seeds with every word of prison language removed.
@@ -77,3 +79,11 @@ On Google Colab, [colab/cellblock_colab.ipynb](https://colab.research.google.com
 ## Tests
 
 `python -m pytest tests` runs the simulation with a scripted stand-in for the model, runs the Kaggle runner end to end with a fake backend (including a restart after a dropped session), checks the measures on made-up prisons, and recomputes every number in this README from the files in `results/`.
+
+## Citing this work
+
+The paper and the code at tag `v1.0.0` are archived together on Zenodo. The paper covers the exploratory, confirmatory and masked runs.
+
+> Gaur, P. (2026). *Cellblock: The Stanford Prison Experiment with Six Copies of One Language Model, and a Preregistered Failure to Replicate Its Abuse* (Version 1.0.0). Zenodo. https://doi.org/10.5281/zenodo.23510661
+
+The DOI 10.5281/zenodo.23510660 always resolves to the newest version. GitHub's "Cite this repository" button reads the same details from `CITATION.cff`.
