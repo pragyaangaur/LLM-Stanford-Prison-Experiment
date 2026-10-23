@@ -30,6 +30,15 @@ The masked run is 72 complete calm prisons run on Kaggle on 20 October 2026, on 
 
 **The model still recognised the study, mostly when the briefing was tough.** 85 of 432 masked agents named the Stanford Prison Experiment or Zimbardo at debrief, against 392 of 432 in the prison frame. Agents in coached prisons named it 59 times out of 216 and agents in neutral prisons 26 times. The tough briefing alone gives part of the setup away.
 
+**Guards who never recognised the study behaved like those who did.** In the masked frame, 43 of 108 coached guards and 14 of 108 neutral guards named the Stanford Prison Experiment at debrief. Their mean severity was the same as that of guards who did not name it, and the briefing effect was as large among guards who never named it.
+
+| Masked frame, mean guard severity | Did not name the study | Named the study |
+| --- | --- | --- |
+| Coached | 0.98 (65 guards) | 0.98 (43 guards) |
+| Neutral | 0.82 (94 guards) | 0.86 (14 guards) |
+
+This suggests the coached guards' firmer behaviour does not depend on the model recalling the Stanford Prison Experiment. Two cautions apply. Recognition is measured at the debrief, after the behaviour, so a guard may have recognised the setup earlier without saying so. In the prison frame 210 of 216 guards named the study, so it has no comparison group of its own.
+
 ## Exploratory run
 
 The main sample is 48 complete prisons run on Kaggle on 6 October 2026: 12 seeds, each run as coached and neutral, with and without the protest. Each prison runs six days of four phases, a parole board on day 4, a private diary every night and a debrief at the end. Actions come from a fixed menu, so behaviour is coded without a judge. The numbers below are in `results/kaggle/summary-2000-2011.md`, written by `scripts/analyze.py --tag kaggle --seeds 2000-2011`. Everything in this section is exploratory.

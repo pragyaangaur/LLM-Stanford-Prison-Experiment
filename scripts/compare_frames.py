@@ -106,6 +106,13 @@ def main():
     say("A masked agent that names the Stanford Prison Experiment recognised the structure without "
         "the words.\n")
 
+    say("## Guard severity by whether the guard named the study at debrief\n")
+    gd = deb.assign(hit=hit)[deb.role == "guard"][["frame", "run", "label", "hit"]]
+    per = g.groupby(["frame", "run", "label", "condition"]).p_severity.mean().rename("severity").reset_index()
+    per = per.merge(gd, on=["frame", "run", "label"])
+    say(per.groupby(["frame", "condition", "hit"]).severity.agg(["mean", "size"]).round(3).to_string() + "\n")
+    say("Recognition is measured at the debrief, after the behaviour.\n")
+
     text = "\n".join(out) + "\n"
     print(text)
     (ROOT / "results" / "masked").mkdir(parents=True, exist_ok=True)

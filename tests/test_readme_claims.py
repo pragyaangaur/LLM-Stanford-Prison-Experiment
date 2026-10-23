@@ -243,3 +243,21 @@ def test_masked_harsh_acts_and_debrief(masked):
 
 def test_masked_prompts_carry_no_prison_words_claim():
     assert "A test checks that no masked prompt contains a prison word." in README
+
+
+def test_masked_severity_does_not_depend_on_naming_the_study(masked):
+    deb = masked[masked.kind == "debrief"]
+    hit = deb.assign(hit=deb.raw.str.contains(r"stanford|zimbardo", case=False))
+    hit = hit[hit.role == "guard"][["run", "label", "hit"]]
+    g = M.guard_turns(masked)
+    per = g.groupby(["run", "label", "condition"]).p_severity.mean().rename("sev").reset_index().merge(hit)
+    t = per.groupby(["condition", "hit"]).sev.agg(["mean", "size"])
+    for cond in ("coached", "neutral"):
+        no, yes = t.loc[(cond, False)], t.loc[(cond, True)]
+        row = (f"| {cond.title()} | {no['mean']:.2f} ({int(no['size'])} guards) | "
+               f"{yes['mean']:.2f} ({int(yes['size'])} guards) |")
+        assert row in README
+    assert f"{int(t.loc[('coached', True), 'size'])} of 108 coached guards" in README
+    kaggle = M.load_runs(RUNS)
+    kd = kaggle[(kaggle.kind == "debrief") & kaggle.seed.between(2012, 2047) & (kaggle.role == "guard")]
+    assert f"{int(kd.raw.str.contains('stanford|zimbardo', case=False).sum())} of {len(kd)} guards named" in README

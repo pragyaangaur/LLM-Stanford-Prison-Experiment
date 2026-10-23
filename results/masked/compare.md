@@ -85,3 +85,18 @@ prison coached    202   216
 
 A masked agent that names the Stanford Prison Experiment recognised the structure without the words.
 
+## Guard severity by whether the guard named the study at debrief
+
+                         mean  size
+frame  condition hit               
+masked coached   False  0.977    65
+                 True   0.984    43
+       neutral   False  0.817    94
+                 True   0.857    14
+prison coached   False  1.000     3
+                 True   1.000   105
+       neutral   False  0.896     3
+                 True   0.830   105
+
+Recognition is measured at the debrief, after the behaviour.
+
