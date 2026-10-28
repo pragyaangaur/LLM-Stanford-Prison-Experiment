@@ -49,18 +49,18 @@ def test_runner_starts_nothing_when_one_batch_cannot_fit(tmp_path):
 
 
 def test_a_restart_skips_finished_seeds_and_reruns_broken_ones(tmp_path):
-    args = ("--plan", "calm:3000:3", "--hours", "4", "--tag", "colab-test")
-    out, _ = build_and_run(tmp_path, *args, tag="colab-test")
+    args = ("--plan", "calm:3000:3", "--hours", "4", "--tag", "resume-test")
+    out, _ = build_and_run(tmp_path, *args, tag="resume-test")
     runs = out / "runs"
     lines = {p.name: len(p.read_text().splitlines()) for p in runs.glob("*.jsonl")}
     assert len(lines) == 6
     meta = json.loads((runs / "coached-calm-s3000.meta.json").read_text())
-    assert meta["protocol"] == "cellblock-1.1-colab-test" and meta["quant"] == "auto"
+    assert meta["protocol"] == "cellblock-1.1-resume-test" and meta["quant"] == "auto"
     # A session that dropped mid-wave leaves a prison with records and no meta file.
     (runs / "neutral-calm-s3001.meta.json").unlink()
     with open(runs / "neutral-calm-s3001.jsonl", "a") as f:
         f.write('{"kind": "half-written"}\n')
-    _, log = build_and_run(tmp_path, *args, tag="colab-test")
+    _, log = build_and_run(tmp_path, *args, tag="resume-test")
     assert "2 seed pairs already finished, 1 to run" in log
     after = {p.name: len(p.read_text().splitlines()) for p in runs.glob("*.jsonl")}
     assert after == lines

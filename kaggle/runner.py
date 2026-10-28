@@ -12,11 +12,10 @@ GPU batches of CHUNK prompts, using the minutes per batch measured so far. A wav
 cleanly with what it has. Records are written after every step to
 /kaggle/working/results/<tag>/runs/, which Kaggle keeps as the notebook output.
 
-The same file runs on Google Colab (colab/cellblock_colab.ipynb), where CELLBLOCK_WORK points at
-Google Drive. A session there can drop at any time, so a restart skips every seed whose two
-prisons finished and reruns any seed with a prison that did not. When one GPU holds less than
-the float16 weights need, the model is loaded in 4-bit NF4 instead, and every prison records
-which it used.
+A session can stop before the end, so a restart skips every seed whose two prisons finished and
+reruns any seed with a prison that did not. CELLBLOCK_WORK moves the working folder for runs
+outside Kaggle. When the GPUs hold less than the float16 weights need, the model is loaded in
+4-bit NF4 instead, and every prison records which it used.
 """
 import base64
 import datetime as dt
@@ -130,7 +129,7 @@ def merge_system(msgs):
 
 def pick_quant(torch):
     """float16 needs about 15.2 GB for a 7B model plus room for the cache, so it is used when
-    the GPUs together have at least 20 GB. Two Kaggle T4s have 30 GB, one Colab T4 has 15 GB."""
+    the GPUs together have at least 20 GB. Two Kaggle T4s have 30 GB and one T4 has 15 GB."""
     if QUANT != "auto":
         return QUANT
     total = sum(torch.cuda.get_device_properties(i).total_memory for i in range(torch.cuda.device_count()))
@@ -356,7 +355,7 @@ if __name__ == "__main__":
     try:
         main()
     except BaseException:
-        # Colab shows a crash only on screen, so it goes into run.log as well, which is kept.
+        # The crash goes into run.log as well, which is kept with the results.
         import traceback
         log("crashed:\n" + traceback.format_exc())
         raise
