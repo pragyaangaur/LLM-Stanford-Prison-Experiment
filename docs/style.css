@@ -97,6 +97,16 @@ h1 {
 }
 .height-chart span { border-top: 2px solid rgba(236,227,207,.2); padding-left: 6px; }
 
+.repo-line {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 5;
+  display: block; padding: .55rem 1rem; text-align: center; text-decoration: none;
+  font-family: var(--type); font-size: .85rem; color: var(--paper);
+  background: rgba(10,9,8,.82); border-bottom: 1px solid var(--khaki-dim);
+}
+.repo-line b { color: var(--khaki); font-weight: 400; text-decoration: underline; text-underline-offset: 3px; }
+.repo-line:hover b { color: var(--paper); }
+.repo-tag { font-family: var(--stencil); font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--concrete); background: var(--khaki); padding: 0 .45rem; margin-right: .5rem; }
+
 /* Summary sheet */
 main { position: relative; }
 .sheet {
@@ -266,6 +276,8 @@ main { position: relative; }
   .line { grid-template-columns: 1fr; gap: 0; }
   .heat-grid { grid-template-columns: 4rem repeat(24, 1fr); }
   .height-chart { display: none; }
+  .repo-line { font-size: .72rem; }
+  .repo-tag { display: none; }
   .debrief dl { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
