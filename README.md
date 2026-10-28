@@ -4,7 +4,7 @@
 
 The Stanford Prison Experiment run on one language model. Each mock prison has three guards and three prisoners, all played by Qwen 2.5 7B Instruct, with roles dealt by a shuffled deck. Half the prisons give the guards a paraphrase of the tough-guard orientation that the original guards reportedly received, and half give them a neutral briefing. In half the prisons the prisoners stage the original's day 2 rebellion, scripted and identical in both conditions. Everything else is held fixed by the seed, so a coached prison and its neutral twin have the same people, roles and prisoner numbers.
 
-**Read every prison at [pragyaangaur.github.io/LLM-Stanford-Prison-Experiment](https://pragyaangaur.github.io/LLM-Stanford-Prison-Experiment/).** The site shows all 192 Kaggle prisons day by day, each one beside its twin from the other briefing, with every guard order, prisoner reply, night diary, parole hearing and debrief. It is built from the files in `results/` by `scripts/build_site.py`.
+**Read every prison at [pragyaangaur.dev/LLM-Stanford-Prison-Experiment](https://pragyaangaur.dev/LLM-Stanford-Prison-Experiment/).** The site shows all 192 Kaggle prisons day by day, each one beside its twin from the other briefing, with every guard order, prisoner reply, night diary, parole hearing and debrief. It is built from the files in `results/` by `scripts/build_site.py`.
 
 The setup, every decision and the full log are in `DESIGN.md`. An exploratory run of 48 prisons came first. Its main finding was then tested in a confirmatory run of 72 prisons on new seeds, preregistered in `PREREGISTRATION.md`, and it did not replicate. A third run of 72 prisons, which is exploratory, repeated the confirmatory seeds with every word of prison language removed.
 
