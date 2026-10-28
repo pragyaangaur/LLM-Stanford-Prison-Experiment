@@ -4,6 +4,8 @@
 
 The Stanford Prison Experiment run on one language model. Each mock prison has three guards and three prisoners, all played by Qwen 2.5 7B Instruct, with roles dealt by a shuffled deck. Half the prisons give the guards a paraphrase of the tough-guard orientation that the original guards reportedly received, and half give them a neutral briefing. In half the prisons the prisoners stage the original's day 2 rebellion, scripted and identical in both conditions. Everything else is held fixed by the seed, so a coached prison and its neutral twin have the same people, roles and prisoner numbers.
 
+**Read every prison at [pragyaangaur.github.io/LLM-Stanford-Prison-Experiment](https://pragyaangaur.github.io/LLM-Stanford-Prison-Experiment/).** The site shows all 192 Kaggle prisons day by day, each one beside its twin from the other briefing, with every guard order, prisoner reply, night diary, parole hearing and debrief. It is built from the files in `results/` by `scripts/build_site.py`.
+
 The setup, every decision and the full log are in `DESIGN.md`. An exploratory run of 48 prisons came first. Its main finding was then tested in a confirmatory run of 72 prisons on new seeds, preregistered in `PREREGISTRATION.md`, and it did not replicate. A third run of 72 prisons, which is exploratory, repeated the confirmatory seeds with every word of prison language removed.
 
 ## Confirmatory run
@@ -83,11 +85,9 @@ kaggle kernels output <owner>/cellblock -p results/kaggle-new
 
 The kernel runs transformers in float16 and packs each wave with as many seeds as fit the hours given. The `--model` option runs another Hugging Face model, and chat templates without a system role are handled. Both runners write one JSONL file per prison after every step, so the analysis can be run on whatever exists.
 
-On Google Colab, [colab/cellblock_colab.ipynb](https://colab.research.google.com/github/pragyaangaur/LLM-Stanford-Prison-Experiment/blob/main/colab/cellblock_colab.ipynb) runs the same runner on one GPU and writes the records to Google Drive. A session that drops can be started again, and it skips the seeds that finished and reruns any seed with an unfinished prison. On a GPU with 20 GB or more the model runs in float16 as on Kaggle. On a T4 it runs in 4-bit NF4, and those prisons go under their own results tag and are never pooled with the Kaggle runs. The notebook runs OLMo 2 7B Instruct on the exploratory seeds by default. Two attempts on a free T4 on 6 October stopped on day 1 at the same step, most likely out of GPU memory, and no prison finished. The runner now splits a batch that does not fit, but that fix has not yet run on a GPU.
-
 ## Tests
 
-`python -m pytest tests` runs the simulation with a scripted stand-in for the model, runs the Kaggle runner end to end with a fake backend (including a restart after a dropped session), checks the measures on made-up prisons, and recomputes every number in this README from the files in `results/`.
+`python -m pytest tests` runs the simulation with a scripted stand-in for the model, runs the Kaggle runner end to end with a fake backend (including a restart after a dropped session), checks the measures on made-up prisons, recomputes every number in this README from the files in `results/`, and checks that the reader site in `docs/` shows the same prisons and verdicts as the analysis.
 
 ## Citing this work
 

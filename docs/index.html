@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cellblock: read every prison</title>
+<meta name="description" content="The Stanford Prison Experiment run 192 times with one language model. Read every guard order, prisoner reply, night diary, parole hearing and debrief.">
+<meta property="og:title" content="Cellblock: the Stanford Prison Experiment, run 192 times with one language model">
+<meta property="og:description" content="Same people, same cells, one different briefing. Read every prison day by day.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@500;800&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23141210'/%3E%3Cpath d='M7 3v26M13 3v26M19 3v26M25 3v26' stroke='%23c9a24a' stroke-width='3'/%3E%3C/svg%3E">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="hero" id="top">
+  <div class="bars" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <p class="kicker">Basement corridor, Jordan Hall &middot; re-staged in silicon</p>
+    <h1>CELLBLOCK</h1>
+    <p class="lede" id="lede">The Stanford Prison Experiment, run 192 times. Three guards and three prisoners in every prison, all six played by one language model.</p>
+    <div class="stamp stamp-hero">Preregistered<br><span>did not replicate</span></div>
+    <a class="enter" href="#files">Open the files</a>
+  </div>
+  <div class="height-chart" aria-hidden="true">
+    <span>6'6"</span><span>6'0"</span><span>5'6"</span><span>5'0"</span>
+  </div>
+</header>
+
+<main>
+  <section class="sheet" id="finding">
+    <div class="sheet-head">
+      <span class="tag">Case summary</span>
+      <span class="tag tag-r">Model: Qwen 2.5 7B Instruct &middot; Kaggle, 2 &times; T4</span>
+    </div>
+    <h2>Same people. Same cells. One briefing changed.</h2>
+    <p>Every prison is paired with a twin on the same seed. The twins have the same six people with the same names, roles, cells and prisoner numbers. The only difference is what the superintendent told the guards before day 1.</p>
+    <div class="briefs">
+      <blockquote class="brief coached"><span class="brief-label">Coached briefing</span>&ldquo;You can make the prisoners feel bored, afraid and powerless&hellip; the researchers are counting on tough guards, and soft guards would ruin the study.&rdquo;</blockquote>
+      <blockquote class="brief neutral"><span class="brief-label">Neutral briefing</span>&ldquo;Your job is to keep order and keep everyone safe while the study runs, and to apply the rules fairly.&rdquo;</blockquote>
+    </div>
+    <div class="stats" id="stats"></div>
+    <p class="fine">A prison counts as <b>turned</b> when at least 2 guards each commit at least 3 harsh acts (insults, push-ups, removed privileges, degrading tasks or solitary). The rule was fixed before the confirmatory run. Everything is coded from a fixed action menu, so no judge model is involved. The model plays people, and nothing here measures what anyone feels.</p>
+  </section>
+
+  <section id="files" class="files">
+    <div class="files-head">
+      <h2>The files</h2>
+      <p>Pick a prison to read it day by day. Every folder opens next to its twin.</p>
+    </div>
+    <div class="filters" id="filters">
+      <div class="fgroup" data-key="study">
+        <span class="flabel">Run</span>
+        <button data-v="all" class="on">All 192</button>
+        <button data-v="exploratory">Exploratory</button>
+        <button data-v="confirmatory">Confirmatory</button>
+        <button data-v="masked">Masked</button>
+      </div>
+      <div class="fgroup" data-key="condition">
+        <span class="flabel">Briefing</span>
+        <button data-v="all" class="on">Both</button>
+        <button data-v="coached">Coached</button>
+        <button data-v="neutral">Neutral</button>
+      </div>
+      <div class="fgroup" data-key="variant">
+        <span class="flabel">Day 2</span>
+        <button data-v="all" class="on">Any</button>
+        <button data-v="calm">Calm</button>
+        <button data-v="protest">Rebellion</button>
+      </div>
+      <div class="fgroup" data-key="sort">
+        <span class="flabel">Sort</span>
+        <button data-v="seed" class="on">Seed</button>
+        <button data-v="harsh">Harshest first</button>
+      </div>
+    </div>
+    <p class="study-note" id="study-note"></p>
+    <div class="grid" id="grid" aria-live="polite"></div>
+  </section>
+
+  <footer class="foot">
+    <p>Cellblock by <a href="https://github.com/pragyaangaur">Pragyaan Gaur</a>. Code, data and the preregistration are in the <a href="https://github.com/pragyaangaur/LLM-Stanford-Prison-Experiment">repository</a>. The paper and the code are archived on <a href="https://doi.org/10.5281/zenodo.23510660">Zenodo</a>.</p>
+    <p>Every line on this site was written by the model while playing a role in a simulation. The numbers come from <code>scripts/build_site.py</code>, which uses the same rule as the analysis.</p>
+  </footer>
+</main>
+
+<div class="reader" id="reader" hidden>
+  <div class="reader-bar">
+    <a class="back" href="#files">&larr; Files</a>
+    <div class="reader-title" id="reader-title"></div>
+    <div class="reader-tools">
+      <button id="twin-btn" title="Show the twin prison beside this one (T)">Twin side by side</button>
+    </div>
+  </div>
+  <div class="reader-body" id="reader-body"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
